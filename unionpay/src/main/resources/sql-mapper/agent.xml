@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dx.dao.AgentDao">
+	<resultMap id="BaseResultMap" type="com.dx.model.Agent">
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from agent
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.dx.model.Agent">
+		insert into agent (id, agent_no, short_name,
+		state, update_time, create_time,
+		creator, settle_type, settle_name,
+		settle_no, settle_phone, settle_branch_bank,
+		settle_branch_no, req_key, card_key,
+		notify_key, payment_key, contact_person,
+		phone_no, prov_code, city_code,
+		area_code, settle_bank_prov, settle_bank_city,
+		settle_bank, legal_name, legal_contact,
+		legal_id, id_start_time, id_end_time,
+		license_no, license_name, id_photo,
+		id_back_photo, license_photo, agreement_photo,
+		settleCard_photo, comments, agent_type,
+		agent_key)
+		values (#{id,jdbcType=BIGINT}, #{agent_no,jdbcType=VARCHAR},
+		#{short_name,jdbcType=VARCHAR},
+		#{state,jdbcType=VARCHAR}, #{update_time,jdbcType=TIMESTAMP}, #{create_time,jdbcType=TIMESTAMP},
+		#{creator,jdbcType=VARCHAR}, #{settle_type,jdbcType=VARCHAR},
+		#{settle_name,jdbcType=VARCHAR},
+		#{settle_no,jdbcType=VARCHAR}, #{settle_phone,jdbcType=VARCHAR},
+		#{settle_branch_bank,jdbcType=VARCHAR},
+		#{settle_branch_no,jdbcType=VARCHAR}, #{req_key,jdbcType=VARCHAR},
+		#{card_key,jdbcType=VARCHAR},
+		#{notify_key,jdbcType=VARCHAR}, #{payment_key,jdbcType=VARCHAR}, #{contact_person,jdbcType=VARCHAR},
+		#{phone_no,jdbcType=VARCHAR}, #{prov_code,jdbcType=VARCHAR},
+		#{city_code,jdbcType=VARCHAR},
+		#{area_code,jdbcType=VARCHAR}, #{settle_bank_prov,jdbcType=VARCHAR},
+		#{settle_bank_city,jdbcType=VARCHAR},
+		#{settle_bank,jdbcType=VARCHAR}, #{legal_name,jdbcType=VARCHAR}, #{legal_contact,jdbcType=VARCHAR},
+		#{legal_id,jdbcType=VARCHAR}, #{id_start_time,jdbcType=VARCHAR},
+		#{id_end_time,jdbcType=VARCHAR},
+		#{license_no,jdbcType=VARCHAR}, #{license_name,jdbcType=VARCHAR}, #{id_photo,jdbcType=VARCHAR},
+		#{id_back_photo,jdbcType=VARCHAR}, #{license_photo,jdbcType=VARCHAR},
+		#{agreement_photo,jdbcType=VARCHAR},
+		#{settleCard_photo,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR},
+		#{agent_type,jdbcType=VARCHAR},
+		#{agent_key,jdbcType=VARCHAR})
+	</insert>
+	<update id="updateByPrimaryKey"
+		parameterType="com.dx.model.Agent">
+		update agent
+		set agent_no = #{agent_no,jdbcType=VARCHAR},
+		short_name = #{short_name,jdbcType=VARCHAR},
+		state = #{state,jdbcType=VARCHAR},
+		update_time = #{update_time,jdbcType=TIMESTAMP},
+		create_time = #{create_time,jdbcType=TIMESTAMP},
+		creator = #{creator,jdbcType=VARCHAR},
+		settle_type = #{settle_type,jdbcType=VARCHAR},
+		settle_name = #{settle_name,jdbcType=VARCHAR},
+		settle_no = #{settle_no,jdbcType=VARCHAR},
+		settle_phone = #{settle_phone,jdbcType=VARCHAR},
+		settle_branch_bank = #{settle_branch_bank,jdbcType=VARCHAR},
+		settle_branch_no = #{settle_branch_no,jdbcType=VARCHAR},
+		req_key = #{req_key,jdbcType=VARCHAR},
+		card_key = #{card_key,jdbcType=VARCHAR},
+		notify_key = #{notify_key,jdbcType=VARCHAR},
+		payment_key = #{payment_key,jdbcType=VARCHAR},
+		contact_person = #{contact_person,jdbcType=VARCHAR},
+		phone_no = #{phone_no,jdbcType=VARCHAR},
+		prov_code = #{prov_code,jdbcType=VARCHAR},
+		city_code = #{city_code,jdbcType=VARCHAR},
+		area_code = #{area_code,jdbcType=VARCHAR},
+		settle_bank_prov = #{settle_bank_prov,jdbcType=VARCHAR},
+		settle_bank_city = #{settle_bank_city,jdbcType=VARCHAR},
+		settle_bank = #{settle_bank,jdbcType=VARCHAR},
+		legal_name = #{legal_name,jdbcType=VARCHAR},
+		legal_contact = #{legal_contact,jdbcType=VARCHAR},
+		legal_id = #{legal_id,jdbcType=VARCHAR},
+		id_start_time = #{id_start_time,jdbcType=VARCHAR},
+		id_end_time = #{id_end_time,jdbcType=VARCHAR},
+		license_no = #{license_no,jdbcType=VARCHAR},
+		license_name = #{license_name,jdbcType=VARCHAR},
+		id_photo = #{id_photo,jdbcType=VARCHAR},
+		id_back_photo = #{id_back_photo,jdbcType=VARCHAR},
+		license_photo = #{license_photo,jdbcType=VARCHAR},
+		agreement_photo = #{agreement_photo,jdbcType=VARCHAR},
+		settleCard_photo = #{settleCard_photo,jdbcType=VARCHAR},
+		comments = #{comments,jdbcType=VARCHAR},
+		agent_type = #{agent_type,jdbcType=VARCHAR},
+		agent_key = #{agent_key,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select id, agent_no, short_name, state, update_time, create_time, creator,
+		settle_type,
+		settle_name, settle_no, settle_phone, settle_branch_bank, settle_branch_no,
+		req_key,
+		card_key, notify_key, payment_key, contact_person, phone_no, prov_code,
+		city_code,
+		area_code, settle_bank_prov, settle_bank_city, settle_bank, legal_name,
+		legal_contact,
+		legal_id, id_start_time, id_end_time, license_no, license_name, id_photo,
+		id_back_photo,
+		license_photo, agreement_photo, settleCard_photo, comments, agent_type, agent_key
+		from agent
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectByAgengNo" parameterType="String"
+		resultMap="BaseResultMap">
+		select * from agent
+		where agent_no = #{0}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, agent_no, short_name, state, update_time, create_time, creator,
+		settle_type,
+		settle_name, settle_no, settle_phone, settle_branch_bank, settle_branch_no,
+		req_key,
+		card_key, notify_key, payment_key, contact_person, phone_no, prov_code,
+		city_code,
+		area_code, settle_bank_prov, settle_bank_city, settle_bank, legal_name,
+		legal_contact,
+		legal_id, id_start_time, id_end_time, license_no, license_name, id_photo,
+		id_back_photo,
+		license_photo, agreement_photo, settleCard_photo, comments, agent_type, agent_key
+		from agent
+	</select>
+</mapper>

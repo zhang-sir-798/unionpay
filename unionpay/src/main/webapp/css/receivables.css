@@ -1,0 +1,275 @@
+/* ===============
+   商家付款页面样式
+   =============== */
+html,body {
+    height: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #000;
+    font: 14px/1.5 Tahoma,"Lucida Grande",Verdana,"Microsoft Yahei",STXihei,hei;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+
+.iconfont.skins{
+    position: absolute;
+    right: 50px;
+    top: 0;
+    color: #fff;
+    text-decoration: none;
+    font-size: 32px;
+    line-height: 49px;
+    font-style: normal;
+}
+#total {
+    width: 100%;
+    height: 100%;
+    min-width: 300px;
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+.calc {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: #bfbfbf;
+    overflow: hidden;
+    /*border: 5px solid transparent;*/
+}
+header {
+    width: 100%;
+    height: 30%;
+    position: relative;
+    background:#202020;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px #000 inset,0 0 15px #333;
+}
+header input {
+    height: 30px;
+    border:none;
+    padding:0 5px 0 0;
+    margin:0;
+    position: absolute;
+    right: 0;
+    bottom:75px;
+    font-size: 30px;
+    font-weight: 700;
+    background-color: transparent;
+    text-align: right;
+    color: #fff;
+    text-shadow: 0 2px 1px rgba(0,0,0,0.5);
+}
+header #content {
+    height: 60px;
+    font-size: 60px;
+    bottom: 10px;
+    right: 0;
+}
+header .weather {
+    color: #fff;
+    padding: 10px 0 0 10px;
+    text-align:center;
+    font-size:20px;
+}
+header .history {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    position: absolute;
+    right:10px;
+    top:10px;
+    cursor: pointer;
+    box-shadow: 0 2px 1px rgba(0,0,0,0.5);
+}
+.minute {
+    height: 10px;
+    width: 2px;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -1px;
+    margin-top: -10px;
+    transform-origin: bottom center;
+    animation: move 3600s steps(60) infinite;
+}
+.second {
+    height: 12px;
+    width: 2px;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -1px;
+    margin-top: -12px;
+    transform-origin: bottom center;
+    animation: move 60s steps(60) infinite;
+}
+main {
+    width: 100%;
+    height: 69%;
+}
+main ul {
+    list-style: none;
+    padding: 0;
+    margin-top:0;
+    margin-bottom:0;
+    width: 100%;
+    height: 90%;
+    cursor: pointer;
+}
+main ul li {
+    width: 25%;
+    height: 25%;
+    font-size: 26px;
+    float: left;
+    color: #202020;
+    text-align: center;
+    border-left:1px solid #000;
+    border-top:1px solid #000;
+    box-sizing: border-box;
+    text-shadow: 0 2px 1px rgba(0,0,0,0.2);
+}
+main ul li:nth-last-child(-n+3) {
+    border-bottom:none;
+}
+main ul li:nth-child(2) a {
+    width: 72%;
+    height: 72%;
+    display: inline-block;
+}
+/*使用伪元素使文字居中*/
+main ul li:before {
+    display: inline-block;
+    content: "";
+    height:100%;
+    vertical-align:middle;
+}
+#calc main ul li:active {
+    box-shadow: 0 0px 15px #999 inset;
+    background-color: #fff;
+    color: #000;
+}
+.sure {
+    float:right;
+    height:50%;
+    background:#fe5337;
+    color:#202020;
+}
+main ul .sure:before{
+    height:50%;
+}
+.save {
+    width: 100%;
+    height: 70%;
+    position: absolute;
+    bottom: -70%;
+    background-color: #333;
+    border-radius: 3px;
+    color: #fff;
+    padding:0 10px;
+    box-sizing: border-box;
+    text-shadow: 0 2px 1px rgba(0,0,0,0.8);
+    overflow: hidden;
+}
+.save h3 {
+    border: 1px solid #fff;
+    border-radius: 3px;
+    text-indent: 10px;
+    line-height: 30px;
+    margin: 10px 0 0 0;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5) ;
+}
+.save .hisList {
+    height: 70%;
+    width: 100%;
+}
+.save ul {
+    padding: 0;
+    margin: 20px 10px;
+    list-style: none;
+    height: 90%;
+    overflow-y: auto;
+}
+.save ul li {
+    height: 40px;
+    line-height: 40px;
+    padding-bottom: 10px;
+    font-size: 36px;
+    font-family: "方正兰亭超细黑简体";
+    text-align: right;
+}
+.save .clear {
+    background-color: #333;
+    border:none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 3px;
+    box-shadow: 0 0 5px #000;
+}
+@keyframes move {
+    0% {
+        transform: rotate3d(0,0,1,0deg);
+    }
+    100% {
+        transform: rotate3d(0,0,1,360deg);
+    }
+}
+.nav{
+    height:15%;
+    background:#fff;
+    margin-top:0;
+    margin-bottom:0;
+}
+.nav li{
+    float:left;
+    width:33.3%;
+    text-align:center;
+    list-style: none;
+    padding-top:5px;
+    border-left:none;
+}
+.nav li:before{
+    display: block;
+    height:50%;
+}
+#calc main .nav li:active{
+    background:none;
+    box-shadow: none;
+}
+.nav li a{
+    font-size:14px;
+    color:#333;
+    display:block;
+    padding-top:20px;
+}
+.nav .nav-index{
+    background:url("../images/ico/footico_01.png") no-repeat top center;
+}
+.nav .nav-my{
+    background:url("../images/ico/footico_02.png") no-repeat top center;
+}
+.nav .nav-other{
+    background:url("../images/ico/footico_03.png") no-repeat top center;
+}
+.nav .nav-index-cur{
+    background:url("../images/ico/footico_04.png") no-repeat top center;
+    color:#fe5337;
+}
+.nav .nav-my-cur{
+    background:url("../images/ico/footico_04.png") no-repeat top center;
+    color:#fe5337;
+}
+.nav .nav-other-cur{
+    background:url("../images/ico/footico_04.png") no-repeat top center;
+    color:#fe5337;
+}

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dx.dao.MerchantDao">
+	<resultMap id="BaseResultMap" type="com.dx.model.Merchant"></resultMap>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from merchant
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="com.dx.model.Merchant">
+		insert into merchant (id, update_time, create_time,
+		updator, creator, mer_no,
+		state, short_name, mer_name,
+		mer_type, settle_type, settle_name,
+		settle_no, settle_mobile, settle_branch_bank,
+		settle_branch_no, req_key, mcc32,
+		settle_bank_prov, settle_bank_city, settle_bank,
+		mcc, legal_name, address,
+		legal_contact, legal_id, id_start_time,
+		id_end_time, license_no, license_name,
+		license_start_time, license_end_time, tax_id,
+		org_code, biz_domain, comments,
+		line, main_business, id_photo,
+		license_photo, agreement_photo, banner_photo,
+		counter_photo, spot_photo, owner_photo,
+		opening_photo, tax_photo, organization_photo,
+		settle_card_photo, type, pay_type
+		)
+		values (#{id,jdbcType=BIGINT}, #{update_time,jdbcType=TIMESTAMP},
+		#{create_time,jdbcType=TIMESTAMP},
+		#{updator,jdbcType=VARCHAR}, #{creator,jdbcType=VARCHAR}, #{mer_no,jdbcType=VARCHAR},
+		#{state,jdbcType=VARCHAR}, #{short_name,jdbcType=VARCHAR},
+		#{mer_name,jdbcType=VARCHAR},
+		#{mer_type,jdbcType=VARCHAR}, #{settle_type,jdbcType=VARCHAR}, #{settle_name,jdbcType=VARCHAR},
+		#{settle_no,jdbcType=VARCHAR}, #{settle_mobile,jdbcType=VARCHAR},
+		#{settle_branch_bank,jdbcType=VARCHAR},
+		#{settle_branch_no,jdbcType=VARCHAR}, #{req_key,jdbcType=VARCHAR},
+		#{mcc32,jdbcType=VARCHAR},
+		#{settle_bank_prov,jdbcType=VARCHAR}, #{settle_bank_city,jdbcType=VARCHAR},
+		#{settle_bank,jdbcType=VARCHAR},
+		#{mcc,jdbcType=VARCHAR}, #{legal_name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+		#{legal_contact,jdbcType=VARCHAR}, #{legal_id,jdbcType=VARCHAR},
+		#{id_start_time,jdbcType=VARCHAR},
+		#{id_end_time,jdbcType=VARCHAR}, #{license_no,jdbcType=VARCHAR}, #{license_name,jdbcType=VARCHAR},
+		#{license_start_time,jdbcType=VARCHAR},
+		#{license_end_time,jdbcType=VARCHAR}, #{tax_id,jdbcType=VARCHAR},
+		#{org_code,jdbcType=VARCHAR}, #{biz_domain,jdbcType=VARCHAR},
+		#{comments,jdbcType=VARCHAR},
+		#{line,jdbcType=VARCHAR}, #{main_business,jdbcType=VARCHAR}, #{id_photo,jdbcType=VARCHAR},
+		#{license_photo,jdbcType=VARCHAR},
+		#{agreement_photo,jdbcType=VARCHAR}, #{banner_photo,jdbcType=VARCHAR},
+		#{counter_photo,jdbcType=VARCHAR}, #{spot_photo,jdbcType=VARCHAR},
+		#{owner_photo,jdbcType=VARCHAR},
+		#{opening_photo,jdbcType=VARCHAR}, #{tax_photo,jdbcType=VARCHAR},
+		#{organization_photo,jdbcType=VARCHAR},
+		#{settle_card_photo,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
+		#{pay_type,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<update id="updateByPrimaryKey"
+		parameterType="com.dx.model.Merchant">
+		update merchant
+		set update_time = #{update_time,jdbcType=TIMESTAMP},
+		create_time = #{create_time,jdbcType=TIMESTAMP},
+		updator = #{updator,jdbcType=VARCHAR},
+		creator = #{creator,jdbcType=VARCHAR},
+		mer_no = #{mer_no,jdbcType=VARCHAR},
+		state = #{state,jdbcType=VARCHAR},
+		short_name = #{short_name,jdbcType=VARCHAR},
+		mer_name = #{mer_name,jdbcType=VARCHAR},
+		mer_type = #{mer_type,jdbcType=VARCHAR},
+		settle_type = #{settle_type,jdbcType=VARCHAR},
+		settle_name = #{settle_name,jdbcType=VARCHAR},
+		settle_no = #{settle_no,jdbcType=VARCHAR},
+		settle_mobile = #{settle_mobile,jdbcType=VARCHAR},
+		settle_branch_bank = #{settle_branch_bank,jdbcType=VARCHAR},
+		settle_branch_no = #{settle_branch_no,jdbcType=VARCHAR},
+		req_key = #{req_key,jdbcType=VARCHAR},
+		mcc32 = #{mcc32,jdbcType=VARCHAR},
+		settle_bank_prov = #{settle_bank_prov,jdbcType=VARCHAR},
+		settle_bank_city = #{settle_bank_city,jdbcType=VARCHAR},
+		settle_bank = #{settle_bank,jdbcType=VARCHAR},
+		mcc = #{mcc,jdbcType=VARCHAR},
+		legal_name = #{legal_name,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		legal_contact = #{legal_contact,jdbcType=VARCHAR},
+		legal_id = #{legal_id,jdbcType=VARCHAR},
+		id_start_time = #{id_start_time,jdbcType=VARCHAR},
+		id_end_time = #{id_end_time,jdbcType=VARCHAR},
+		license_no = #{license_no,jdbcType=VARCHAR},
+		license_name = #{license_name,jdbcType=VARCHAR},
+		license_start_time = #{license_start_time,jdbcType=VARCHAR},
+		license_end_time = #{license_end_time,jdbcType=VARCHAR},
+		tax_id = #{tax_id,jdbcType=VARCHAR},
+		org_code = #{org_code,jdbcType=VARCHAR},
+		biz_domain = #{biz_domain,jdbcType=VARCHAR},
+		comments = #{comments,jdbcType=VARCHAR},
+		line = #{line,jdbcType=VARCHAR},
+		main_business = #{main_business,jdbcType=VARCHAR},
+		id_photo = #{id_photo,jdbcType=VARCHAR},
+		license_photo = #{license_photo,jdbcType=VARCHAR},
+		agreement_photo = #{agreement_photo,jdbcType=VARCHAR},
+		banner_photo = #{banner_photo,jdbcType=VARCHAR},
+		counter_photo = #{counter_photo,jdbcType=VARCHAR},
+		spot_photo = #{spot_photo,jdbcType=VARCHAR},
+		owner_photo = #{owner_photo,jdbcType=VARCHAR},
+		opening_photo = #{opening_photo,jdbcType=VARCHAR},
+		tax_photo = #{tax_photo,jdbcType=VARCHAR},
+		organization_photo = #{organization_photo,jdbcType=VARCHAR},
+		settle_card_photo = #{settle_card_photo,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		pay_type = #{pay_type,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select id, update_time, create_time, updator, creator, mer_no, state,
+		short_name,
+		mer_name, mer_type, settle_type, settle_name, settle_no, settle_mobile,
+		settle_branch_bank,
+		settle_branch_no, req_key, mcc32, settle_bank_prov, settle_bank_city, settle_bank,
+		mcc, legal_name, address, legal_contact, legal_id, id_start_time,
+		id_end_time, license_no,
+		license_name, license_start_time, license_end_time, tax_id, org_code, biz_domain,
+		comments, line, main_business, id_photo, license_photo,
+		agreement_photo, banner_photo,
+		counter_photo, spot_photo, owner_photo, opening_photo, tax_photo,
+		organization_photo,
+		settle_card_photo, type, pay_type
+		from merchant
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="selectByMerNo" parameterType="String"
+		resultMap="BaseResultMap">
+		select id, update_time, create_time, updator, creator, mer_no, state,
+		short_name,
+		mer_name, mer_type, settle_type, settle_name, settle_no, settle_mobile,
+		settle_branch_bank,
+		settle_branch_no, req_key, mcc32, settle_bank_prov, settle_bank_city, settle_bank,
+		mcc, legal_name, address, legal_contact, legal_id, id_start_time,
+		id_end_time, license_no,
+		license_name, license_start_time, license_end_time, tax_id, org_code, biz_domain,
+		comments, line, main_business, id_photo, license_photo,
+		agreement_photo, banner_photo,
+		counter_photo, spot_photo, owner_photo, opening_photo, tax_photo,
+		organization_photo,
+		settle_card_photo, type, pay_type
+		from merchant
+		where mer_no = #{0}
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, update_time, create_time, updator, creator, mer_no, state,
+		short_name,
+		mer_name, mer_type, settle_type, settle_name, settle_no, settle_mobile,
+		settle_branch_bank,
+		settle_branch_no, req_key, mcc32, settle_bank_prov, settle_bank_city, settle_bank,
+		mcc, legal_name, address, legal_contact, legal_id, id_start_time,
+		id_end_time, license_no,
+		license_name, license_start_time, license_end_time, tax_id, org_code, biz_domain,
+		comments, line, main_business, id_photo, license_photo,
+		agreement_photo, banner_photo,
+		counter_photo, spot_photo, owner_photo, opening_photo, tax_photo,
+		organization_photo,
+		settle_card_photo, type, pay_type
+		from merchant
+	</select>
+</mapper>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dx.dao.FixedQrRepositoryDao">
+	<resultMap id="BaseResultMap"
+		type="com.dx.model.FixedQrRepository"></resultMap>
+
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from fixed_qr_repository
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert"
+		parameterType="com.dx.model.FixedQrRepository">
+		insert into fixed_qr_repository (id, qr_num, qr_status,
+		qr_code, create_time, yl_batch_no,
+		batch_no, gen_count, agent_key,
+		agent_no, remark, union_mer_id,
+		mer_no, notify_url, open_type,
+		bind_state, bind_time, channel_id
+		)
+		values (#{id,jdbcType=BIGINT}, #{qr_num,jdbcType=VARCHAR},
+		#{qr_status,jdbcType=VARCHAR},
+		#{qr_code,jdbcType=VARCHAR}, #{create_time,jdbcType=TIMESTAMP}, #{yl_batch_no,jdbcType=VARCHAR},
+		#{batch_no,jdbcType=VARCHAR}, #{gen_count,jdbcType=VARCHAR},
+		#{agent_key,jdbcType=VARCHAR},
+		#{agent_no,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{union_mer_id,jdbcType=VARCHAR},
+		#{mer_no,jdbcType=VARCHAR}, #{notify_url,jdbcType=VARCHAR},
+		#{open_type,jdbcType=VARCHAR},
+		#{bind_state,jdbcType=VARCHAR}, #{bind_time,jdbcType=TIMESTAMP}, #{channel_id,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<update id="updateByPrimaryKey"
+		parameterType="com.dx.model.FixedQrRepository">
+		update fixed_qr_repository
+		set qr_num = #{qr_num,jdbcType=VARCHAR},
+		qr_status = #{qr_status,jdbcType=VARCHAR},
+		qr_code = #{qr_code,jdbcType=VARCHAR},
+		create_time = #{create_time,jdbcType=TIMESTAMP},
+		yl_batch_no = #{yl_batch_no,jdbcType=VARCHAR},
+		batch_no = #{batch_no,jdbcType=VARCHAR},
+		gen_count = #{gen_count,jdbcType=VARCHAR},
+		agent_key = #{agent_key,jdbcType=VARCHAR},
+		agent_no = #{agent_no,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR},
+		union_mer_id = #{union_mer_id,jdbcType=VARCHAR},
+		mer_no = #{mer_no,jdbcType=VARCHAR},
+		notify_url = #{notify_url,jdbcType=VARCHAR},
+		open_type = #{open_type,jdbcType=VARCHAR},
+		bind_state = #{bind_state,jdbcType=VARCHAR},
+		bind_time = #{bind_time,jdbcType=TIMESTAMP},
+		channel_id = #{channel_id,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select *
+		from fixed_qr_repository
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="selectByQrCode" parameterType="String"
+		resultMap="BaseResultMap">
+		select *
+		from fixed_qr_repository
+		where qr_code = #{0}
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select *
+		from fixed_qr_repository
+	</select>
+
+	<insert id="insertListQrRepository"
+		parameterType="java.util.List">
+		insert into fixed_qr_repository (
+
+		qr_num,qr_status,qr_code,create_time,yl_batch_no,batch_no,gen_count,agent_no,remark,agent_key
+		)
+		values
+		<foreach collection="list" item="fixedCode" index="index"
+			separator=",">
+			(
+			#{fixedCode.qr_num},
+			#{fixedCode.qr_status},
+			#{fixedCode.qr_code},
+			#{fixedCode.create_time},
+			#{fixedCode.yl_batch_no},
+			#{fixedCode.batch_no},
+			#{fixedCode.gen_count},
+			#{fixedCode.agent_no},
+			#{fixedCode.remark},
+			#{fixedCode.agent_key}
+			)
+		</foreach>
+	</insert>
+
+
+</mapper>

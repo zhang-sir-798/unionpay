@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dx.dao.RefundDetailDao">
+	<resultMap id="BaseResultMap"
+		type="com.dx.model.RefundDetail">
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from refund_detail
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.dx.model.RefundDetail">
+		insert into refund_detail (id, refund_no, notify_url,
+		mer_no, refund_reason, total_order_amount,
+		refund_amount, refund_detail_item_list,
+		order_no, trade_no, serial_no,
+		refund_state, req_key, notify_time,trx_type,channel_id,sub_mer_id
+		)
+		values (#{id,jdbcType=BIGINT}, #{refund_no,jdbcType=VARCHAR},
+		#{notify_url,jdbcType=VARCHAR},
+		#{mer_no,jdbcType=VARCHAR}, #{refund_reason,jdbcType=VARCHAR},
+		#{total_order_amount,jdbcType=VARCHAR},
+		#{refund_amount,jdbcType=VARCHAR},
+		#{refund_detail_item_list,jdbcType=VARCHAR},
+		#{order_no,jdbcType=VARCHAR}, #{trade_no,jdbcType=VARCHAR},
+		#{serial_no,jdbcType=VARCHAR},
+		#{refund_state,jdbcType=VARCHAR}, #{req_key,jdbcType=VARCHAR}, #{notify_time,jdbcType=TIMESTAMP},
+		#{trx_type,jdbcType=VARCHAR}, #{channel_id,jdbcType=VARCHAR}
+		, #{sub_mer_id,jdbcType=VARCHAR}
+		)
+	</insert>
+	<update id="updateByPrimaryKey"
+		parameterType="com.dx.model.RefundDetail">
+		update refund_detail
+		set refund_no = #{refund_no,jdbcType=VARCHAR},
+		notify_url = #{notify_url,jdbcType=VARCHAR},
+		mer_no = #{mer_no,jdbcType=VARCHAR},
+		refund_reason = #{refund_reason,jdbcType=VARCHAR},
+		total_order_amount = #{total_order_amount,jdbcType=VARCHAR},
+		refund_amount = #{refund_amount,jdbcType=VARCHAR},
+		refund_detail_item_list = #{refund_detail_item_list,jdbcType=VARCHAR},
+		order_no = #{order_no,jdbcType=VARCHAR},
+		trade_no = #{trade_no,jdbcType=VARCHAR},
+		serial_no = #{serial_no,jdbcType=VARCHAR},
+		refund_state = #{refund_state,jdbcType=VARCHAR},
+		req_key = #{req_key,jdbcType=VARCHAR},
+		notify_time = #{notify_time,jdbcType=TIMESTAMP},
+		trx_type = #{trx_type,jdbcType=VARCHAR},
+		channel_id = #{channel_id,jdbcType=VARCHAR},
+		sub_mer_id = #{sub_mer_id,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select *
+		from refund_detail
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="selectByParams" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select *
+		from refund_detail
+		where order_no = #{0} and refund_no = #{1}
+	</select>
+
+	<select id="selectByRefundNo" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select *
+		from refund_detail
+		where refund_no = #{0}
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select *
+		from refund_detail
+	</select>
+</mapper>

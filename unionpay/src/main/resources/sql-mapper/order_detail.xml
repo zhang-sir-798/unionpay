@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dx.dao.OrderDetailDao">
+	<resultMap id="BaseResultMap" type="com.dx.model.OrderDetail"></resultMap>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from order_detail
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="com.dx.model.OrderDetail">
+		insert into order_detail (id, chan_mer_id, app_id,
+		channel_id, cost, front_url,
+		client_ip, body, notify_url,
+		mer_no, order_amount, serial_no,
+		order_no, trx_type, state,
+		sub_mch_id, resp_code, resp_msg,
+		mer_settle_amt, mer_fee, agent_lv1_settle_amt,
+		agent_lv2_settle_amt, plat_settle_amt,
+		agent_lv1_profit, agent_lv2_profit, platform_profit,
+		channel_trans_no, channel_pri_key, channel_pub_key,
+		card_no, id_card_no, start_time,
+		expire_time, req_key, card_type,
+		notify_time)
+		values (#{id,jdbcType=BIGINT}, #{chan_mer_id,jdbcType=VARCHAR},
+		#{app_id,jdbcType=VARCHAR},
+		#{channel_id,jdbcType=VARCHAR}, #{cost,jdbcType=VARCHAR}, #{front_url,jdbcType=VARCHAR},
+		#{client_ip,jdbcType=VARCHAR}, #{body,jdbcType=VARCHAR},
+		#{notify_url,jdbcType=VARCHAR},
+		#{mer_no,jdbcType=VARCHAR}, #{order_amount,jdbcType=VARCHAR}, #{serial_no,jdbcType=VARCHAR},
+		#{order_no,jdbcType=VARCHAR}, #{trx_type,jdbcType=VARCHAR},
+		#{state,jdbcType=VARCHAR},
+		#{sub_mch_id,jdbcType=VARCHAR}, #{resp_code,jdbcType=VARCHAR}, #{resp_msg,jdbcType=VARCHAR},
+		#{mer_settle_amt,jdbcType=VARCHAR}, #{mer_fee,jdbcType=VARCHAR},
+		#{agent_lv1_settle_amt,jdbcType=VARCHAR},
+		#{agent_lv2_settle_amt,jdbcType=VARCHAR},
+		#{plat_settle_amt,jdbcType=VARCHAR},
+		#{agent_lv1_profit,jdbcType=VARCHAR},
+		#{agent_lv2_profit,jdbcType=VARCHAR},
+		#{platform_profit,jdbcType=VARCHAR},
+		#{channel_trans_no,jdbcType=VARCHAR},
+		#{channel_pri_key,jdbcType=VARCHAR},
+		#{channel_pub_key,jdbcType=VARCHAR},
+		#{card_no,jdbcType=VARCHAR}, #{id_card_no,jdbcType=VARCHAR}, #{start_time,jdbcType=VARCHAR},
+		#{expire_time,jdbcType=VARCHAR}, #{req_key,jdbcType=VARCHAR},
+		#{card_type,jdbcType=VARCHAR},
+		#{notify_time,jdbcType=TIMESTAMP})
+	</insert>
+
+	<update id="updateByPrimaryKey"
+		parameterType="com.dx.model.OrderDetail">
+		update order_detail
+		set chan_mer_id = #{chan_mer_id,jdbcType=VARCHAR},
+		app_id = #{app_id,jdbcType=VARCHAR},
+		channel_id = #{channel_id,jdbcType=VARCHAR},
+		cost = #{cost,jdbcType=VARCHAR},
+		front_url = #{front_url,jdbcType=VARCHAR},
+		client_ip = #{client_ip,jdbcType=VARCHAR},
+		body = #{body,jdbcType=VARCHAR},
+		notify_url = #{notify_url,jdbcType=VARCHAR},
+		mer_no = #{mer_no,jdbcType=VARCHAR},
+		order_amount = #{order_amount,jdbcType=VARCHAR},
+		serial_no = #{serial_no,jdbcType=VARCHAR},
+		order_no = #{order_no,jdbcType=VARCHAR},
+		trx_type = #{trx_type,jdbcType=VARCHAR},
+		state = #{state,jdbcType=VARCHAR},
+		sub_mch_id = #{sub_mch_id,jdbcType=VARCHAR},
+		resp_code = #{resp_code,jdbcType=VARCHAR},
+		resp_msg = #{resp_msg,jdbcType=VARCHAR},
+		mer_settle_amt = #{mer_settle_amt,jdbcType=VARCHAR},
+		mer_fee = #{mer_fee,jdbcType=VARCHAR},
+		agent_lv1_settle_amt = #{agent_lv1_settle_amt,jdbcType=VARCHAR},
+		agent_lv2_settle_amt = #{agent_lv2_settle_amt,jdbcType=VARCHAR},
+		plat_settle_amt = #{plat_settle_amt,jdbcType=VARCHAR},
+		agent_lv1_profit = #{agent_lv1_profit,jdbcType=VARCHAR},
+		agent_lv2_profit = #{agent_lv2_profit,jdbcType=VARCHAR},
+		platform_profit = #{platform_profit,jdbcType=VARCHAR},
+		channel_trans_no = #{channel_trans_no,jdbcType=VARCHAR},
+		channel_pri_key = #{channel_pri_key,jdbcType=VARCHAR},
+		channel_pub_key = #{channel_pub_key,jdbcType=VARCHAR},
+		card_no = #{card_no,jdbcType=VARCHAR},
+		id_card_no = #{id_card_no,jdbcType=VARCHAR},
+		start_time = #{start_time,jdbcType=VARCHAR},
+		expire_time = #{expire_time,jdbcType=VARCHAR},
+		req_key = #{req_key,jdbcType=VARCHAR},
+		card_type = #{card_type,jdbcType=VARCHAR},
+		notify_time = #{notify_time,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select *
+		from order_detail
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="selectByOrderNo" parameterType="String"
+		resultMap="BaseResultMap">
+		select *
+		from order_detail
+		where order_no = #{0}
+	</select>
+
+	<select id="selectBySerialNo" parameterType="String"
+		resultMap="BaseResultMap">
+		select *
+		from order_detail
+		where serial_no = #{0}
+	</select>
+
+	<select id="selectByOrderAndTime" parameterType="String"
+		resultMap="BaseResultMap">
+		select *
+		from order_detail
+		where order_no = #{0} and start_time = #{1}
+	</select>
+
+	<select id="selectHistoryByOrderAndTime" parameterType="String"
+		resultMap="BaseResultMap">
+		select *
+		from order_detail_history
+		where serial_no = #{0} and start_time = #{1}
+	</select>
+
+
+</mapper>

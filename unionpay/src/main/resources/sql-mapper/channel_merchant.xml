@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dx.dao.ChannelMerchantDao">
+	<resultMap id="BaseResultMap"
+		type="com.dx.model.ChannelMerchant"></resultMap>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from channel_merchant
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.dx.model.ChannelMerchant">
+		insert into channel_merchant (id, sub_mch_id, merchant_name,
+		merchant_shortname, service_phone, contact,
+		contact_phone, contact_email, business,
+		contact_weachatid_type, contact_wechatid,
+		merchant_remark, status, type,
+		creator, create_time, update_name,
+		update_time, external_id, ai_type,
+		ali_mobile, id_card_no, province_code,
+		city_code, district_code, address,
+		longitude, latitude, addinfos_type,
+		business_license, card_no, card_name,
+		pay_code_info, logon_id)
+		values (#{id,jdbcType=BIGINT}, #{sub_mch_id,jdbcType=VARCHAR},
+		#{merchant_name,jdbcType=VARCHAR},
+		#{merchant_shortname,jdbcType=VARCHAR},
+		#{service_phone,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR},
+		#{contact_phone,jdbcType=VARCHAR}, #{contact_email,jdbcType=VARCHAR},
+		#{business,jdbcType=VARCHAR},
+		#{contact_weachatid_type,jdbcType=VARCHAR},
+		#{contact_wechatid,jdbcType=VARCHAR},
+		#{merchant_remark,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR},
+		#{creator,jdbcType=VARCHAR}, #{create_time,jdbcType=TIMESTAMP}, #{update_name,jdbcType=VARCHAR},
+		#{update_time,jdbcType=TIMESTAMP}, #{external_id,jdbcType=VARCHAR},
+		#{ai_type,jdbcType=VARCHAR},
+		#{ali_mobile,jdbcType=VARCHAR}, #{id_card_no,jdbcType=VARCHAR}, #{province_code,jdbcType=VARCHAR},
+		#{city_code,jdbcType=VARCHAR}, #{district_code,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{longitude,jdbcType=VARCHAR}, #{latitude,jdbcType=VARCHAR}, #{addinfos_type,jdbcType=VARCHAR},
+		#{business_license,jdbcType=VARCHAR}, #{card_no,jdbcType=VARCHAR},
+		#{card_name,jdbcType=VARCHAR},
+		#{pay_code_info,jdbcType=VARCHAR}, #{logon_id,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="updateByPrimaryKey"
+		parameterType="com.dx.model.ChannelMerchant">
+		update channel_merchant
+		set sub_mch_id = #{sub_mch_id,jdbcType=VARCHAR},
+		merchant_name = #{merchant_name,jdbcType=VARCHAR},
+		merchant_shortname = #{merchant_shortname,jdbcType=VARCHAR},
+		service_phone = #{service_phone,jdbcType=VARCHAR},
+		contact = #{contact,jdbcType=VARCHAR},
+		contact_phone = #{contact_phone,jdbcType=VARCHAR},
+		contact_email = #{contact_email,jdbcType=VARCHAR},
+		business = #{business,jdbcType=VARCHAR},
+		contact_weachatid_type = #{contact_weachatid_type,jdbcType=VARCHAR},
+		contact_wechatid = #{contact_wechatid,jdbcType=VARCHAR},
+		merchant_remark = #{merchant_remark,jdbcType=VARCHAR},
+		status = #{status,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		creator = #{creator,jdbcType=VARCHAR},
+		create_time = #{create_time,jdbcType=TIMESTAMP},
+		update_name = #{update_name,jdbcType=VARCHAR},
+		update_time = #{update_time,jdbcType=TIMESTAMP},
+		external_id = #{external_id,jdbcType=VARCHAR},
+		ai_type = #{ai_type,jdbcType=VARCHAR},
+		ali_mobile = #{ali_mobile,jdbcType=VARCHAR},
+		id_card_no = #{id_card_no,jdbcType=VARCHAR},
+		province_code = #{province_code,jdbcType=VARCHAR},
+		city_code = #{city_code,jdbcType=VARCHAR},
+		district_code = #{district_code,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		longitude = #{longitude,jdbcType=VARCHAR},
+		latitude = #{latitude,jdbcType=VARCHAR},
+		addinfos_type = #{addinfos_type,jdbcType=VARCHAR},
+		business_license = #{business_license,jdbcType=VARCHAR},
+		card_no = #{card_no,jdbcType=VARCHAR},
+		card_name = #{card_name,jdbcType=VARCHAR},
+		pay_code_info = #{pay_code_info,jdbcType=VARCHAR},
+		logon_id = #{logon_id,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select id, sub_mch_id, merchant_name, merchant_shortname, service_phone,
+		contact,
+		contact_phone, contact_email, business, contact_weachatid_type, contact_wechatid,
+		merchant_remark, status, type, creator, create_time, update_name,
+		update_time, external_id,
+		ai_type, ali_mobile, id_card_no, province_code, city_code, district_code,
+		address,
+		longitude, latitude, addinfos_type, business_license, card_no, card_name,
+		pay_code_info,
+		logon_id
+		from channel_merchant
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, sub_mch_id, merchant_name, merchant_shortname, service_phone,
+		contact,
+		contact_phone, contact_email, business, contact_weachatid_type, contact_wechatid,
+		merchant_remark, status, type, creator, create_time, update_name,
+		update_time, external_id,
+		ai_type, ali_mobile, id_card_no, province_code, city_code, district_code,
+		address,
+		longitude, latitude, addinfos_type, business_license, card_no, card_name,
+		pay_code_info,
+		logon_id
+		from channel_merchant
+	</select>
+</mapper>

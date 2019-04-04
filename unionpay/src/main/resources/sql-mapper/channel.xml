@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dx.dao.ChannelDao">
+	<resultMap id="BaseResultMap" type="com.dx.model.Channel"></resultMap>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from channel
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="com.dx.model.Channel">
+		insert into channel (id, name, fee,
+		channel_id, app_id, mer_id,
+		public_key, private_key, create_name,
+		create_time, update_time, update_name,
+		type)
+		values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR},
+		#{fee,jdbcType=VARCHAR},
+		#{channel_id,jdbcType=VARCHAR}, #{app_id,jdbcType=VARCHAR}, #{mer_id,jdbcType=VARCHAR},
+		#{public_key,jdbcType=VARCHAR}, #{private_key,jdbcType=VARCHAR},
+		#{create_name,jdbcType=VARCHAR},
+		#{create_time,jdbcType=TIMESTAMP}, #{update_time,jdbcType=TIMESTAMP}, #{update_name,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="updateByPrimaryKey"
+		parameterType="com.dx.model.Channel">
+		update channel
+		set name = #{name,jdbcType=VARCHAR},
+		fee = #{fee,jdbcType=VARCHAR},
+		channel_id = #{channel_id,jdbcType=VARCHAR},
+		app_id = #{app_id,jdbcType=VARCHAR},
+		mer_id = #{mer_id,jdbcType=VARCHAR},
+		public_key = #{public_key,jdbcType=VARCHAR},
+		private_key = #{private_key,jdbcType=VARCHAR},
+		create_name = #{create_name,jdbcType=VARCHAR},
+		create_time = #{create_time,jdbcType=TIMESTAMP},
+		update_time = #{update_time,jdbcType=TIMESTAMP},
+		update_name = #{update_name,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByChannelId" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select id, name, fee, channel_id, app_id, mer_id, public_key, private_key,
+		create_name,
+		create_time, update_time, update_name, type
+		from channel
+		where channel_id = #{channel_id,jdbcType=BIGINT}
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, name, fee, channel_id, app_id, mer_id, public_key, private_key,
+		create_name,
+		create_time, update_time, update_name, type
+		from channel
+	</select>
+</mapper>

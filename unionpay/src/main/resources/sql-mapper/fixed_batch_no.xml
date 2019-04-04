@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dx.dao.FixedBatchNoDao">
+	<resultMap id="BaseResultMap"
+		type="com.dx.model.FixedBatchNo">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="create_time" />
+		<result column="yl_batch_no" jdbcType="VARCHAR"
+			property="yl_batch_no" />
+		<result column="gen_count" jdbcType="VARCHAR"
+			property="gen_count" />
+		<result column="agent_key" jdbcType="VARCHAR"
+			property="agent_key" />
+		<result column="agent_no" jdbcType="VARCHAR"
+			property="agent_no" />
+		<result column="remark" jdbcType="VARCHAR" property="remark" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from fixed_batch_no
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.dx.model.FixedBatchNo">
+		insert into fixed_batch_no (id, create_time, yl_batch_no,
+		gen_count, agent_key, agent_no,
+		remark)
+		values (#{id,jdbcType=BIGINT}, #{create_time,jdbcType=TIMESTAMP},
+		#{yl_batch_no,jdbcType=VARCHAR},
+		#{gen_count,jdbcType=VARCHAR}, #{agent_key,jdbcType=VARCHAR}, #{agent_no,jdbcType=VARCHAR},
+		#{remark,jdbcType=VARCHAR})
+	</insert>
+	<update id="updateByPrimaryKey"
+		parameterType="com.dx.model.FixedBatchNo">
+		update fixed_batch_no
+		set create_time = #{create_time,jdbcType=TIMESTAMP},
+		yl_batch_no = #{yl_batch_no,jdbcType=VARCHAR},
+		gen_count = #{gen_count,jdbcType=VARCHAR},
+		agent_key = #{agent_key,jdbcType=VARCHAR},
+		agent_no = #{agent_no,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select id, create_time, yl_batch_no, gen_count, agent_key, agent_no, remark
+		from fixed_batch_no
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectByBacthNo" parameterType="String"
+		resultMap="BaseResultMap">
+		select *
+		from fixed_batch_no
+		where yl_batch_no = #{0}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, create_time, yl_batch_no, gen_count, agent_key, agent_no, remark
+		from fixed_batch_no
+	</select>
+</mapper>

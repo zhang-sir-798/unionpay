@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd  
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd  
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd" >
+        
+	<!-- 启用spring注解扫描并指定包所在的位置 -->
+	<context:component-scan base-package="com.*.*">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	
+	<bean id="contextUtil" class="com.pay.common.util.SpringContextUtil" />
+	
+	<bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:database.properties</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="abstractDataSource" abstract="true" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="DriverClassName" value="${driverClassName}" />
+		<property name="initialSize" value="${initialSize}" />
+		<property name="minIdle" value="${minIdle}" />
+		<property name="maxActive" value="${maxActive}" />
+		<property name="maxWait" value="${maxWait}" />
+		<property name="timeBetweenEvictionRunsMillis" value="${timeBetweenEvictionRunsMillis}" />
+		<property name="minEvictableIdleTimeMillis" value="${minEvictableIdleTimeMillis}" />
+		<property name="validationQuery" value="${validationQuery}" />
+		<property name="testWhileIdle" value="${testWhileIdle}" />
+		<property name="testOnBorrow" value="${testOnBorrow}" />
+		<property name="testOnReturn" value="${testOnReturn}" />
+		<!--新增 -->
+		<!-- <property name="poolPreparedStatements" value="true"/> <property name="maxPoolPreparedStatementPerConnectionSize" 
+			value="20"/> <property name="connectionProperties" value="config.decrypt=true"/> -->
+	</bean>
+	<bean id="dataSourceWrite" parent="abstractDataSource">
+		<property name="url" value="${trans.url}" />
+		<property name="username" value="${trans.username}" />
+		<property name="password" value="${trans.password}" />
+	</bean>
+	<bean id="dataSourceRead" parent="abstractDataSource">
+		<property name="url" value="${zc.url}" />
+		<property name="username" value="${zc.username}" />
+		<property name="password" value="${zc.password}" />
+	</bean>
+	<bean id="dataSource" class="com.dx.util.dbconfig.DynamicDataSource">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<entry key="King" value-ref="dataSourceWrite" />
+				<entry key="Queen" value-ref="dataSourceRead" />
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="dataSourceWrite" />
+	</bean>
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:sql-mapper/**/*.xml" />
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<bean id="dataSourceAspect" class="com.dx.util.dbconfig.DataSourceAspect" />
+	<aop:config>
+		<aop:aspect id="c" ref="dataSourceAspect">
+			<aop:pointcut id="tx"
+				expression="execution(* com.dx.service.*.*(..))" />
+			<aop:before pointcut-ref="tx" method="before" />
+		</aop:aspect>
+	</aop:config>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.dx.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+</beans>

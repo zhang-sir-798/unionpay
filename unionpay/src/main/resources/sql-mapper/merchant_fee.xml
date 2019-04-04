@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dx.dao.MerchantFeeDao">
+	<resultMap id="BaseResultMap" type="com.dx.model.MerchantFee"></resultMap>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from merchant_fee
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+
+	<insert id="insert" parameterType="com.dx.model.MerchantFee">
+		insert into merchant_fee (id, mer_no, prod_node,
+		prod_name, prod_id, fee_type,
+		ratio, fixed, down_limit,
+		up_limit, create_time, update_time,
+		creator, payment_type, c_fee_type,
+		c_ratio, c_fixed, c_down_limit,
+		c_up_limit, day_init_limit, day_limit,
+		each_up_limit, each_down_limit, c_day_init_limit,
+		c_day_limit, c_each_up_limit, c_each_down_limit,
+		layered_type, card_type, recharge_type,
+		payment_org, payment_account, scale_type,
+		payment_key, state)
+		values (#{id,jdbcType=BIGINT}, #{mer_no,jdbcType=VARCHAR},
+		#{prod_node,jdbcType=VARCHAR},
+		#{prod_name,jdbcType=VARCHAR}, #{prod_id,jdbcType=BIGINT}, #{fee_type,jdbcType=VARCHAR},
+		#{ratio,jdbcType=VARCHAR}, #{fixed,jdbcType=VARCHAR},
+		#{down_limit,jdbcType=VARCHAR},
+		#{up_limit,jdbcType=VARCHAR}, #{create_time,jdbcType=TIMESTAMP}, #{update_time,jdbcType=TIMESTAMP},
+		#{creator,jdbcType=VARCHAR}, #{payment_type,jdbcType=VARCHAR},
+		#{c_fee_type,jdbcType=VARCHAR},
+		#{c_ratio,jdbcType=VARCHAR}, #{c_fixed,jdbcType=VARCHAR}, #{c_down_limit,jdbcType=VARCHAR},
+		#{c_up_limit,jdbcType=VARCHAR}, #{day_init_limit,jdbcType=VARCHAR},
+		#{day_limit,jdbcType=VARCHAR},
+		#{each_up_limit,jdbcType=VARCHAR}, #{each_down_limit,jdbcType=VARCHAR},
+		#{c_day_init_limit,jdbcType=VARCHAR},
+		#{c_day_limit,jdbcType=VARCHAR}, #{c_each_up_limit,jdbcType=VARCHAR},
+		#{c_each_down_limit,jdbcType=VARCHAR},
+		#{layered_type,jdbcType=VARCHAR}, #{card_type,jdbcType=VARCHAR},
+		#{recharge_type,jdbcType=VARCHAR},
+		#{payment_org,jdbcType=VARCHAR}, #{payment_account,jdbcType=VARCHAR}, #{scale_type,jdbcType=VARCHAR},
+		#{payment_key,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR})
+	</insert>
+
+	<update id="updateByPrimaryKey"
+		parameterType="com.dx.model.MerchantFee">
+		update merchant_fee
+		set mer_no = #{mer_no,jdbcType=VARCHAR},
+		prod_node = #{prod_node,jdbcType=VARCHAR},
+		prod_name = #{prod_name,jdbcType=VARCHAR},
+		prod_id = #{prod_id,jdbcType=BIGINT},
+		fee_type = #{fee_type,jdbcType=VARCHAR},
+		ratio = #{ratio,jdbcType=VARCHAR},
+		fixed = #{fixed,jdbcType=VARCHAR},
+		down_limit = #{down_limit,jdbcType=VARCHAR},
+		up_limit = #{up_limit,jdbcType=VARCHAR},
+		create_time = #{create_time,jdbcType=TIMESTAMP},
+		update_time = #{update_time,jdbcType=TIMESTAMP},
+		creator = #{creator,jdbcType=VARCHAR},
+		payment_type = #{payment_type,jdbcType=VARCHAR},
+		c_fee_type = #{c_fee_type,jdbcType=VARCHAR},
+		c_ratio = #{c_ratio,jdbcType=VARCHAR},
+		c_fixed = #{c_fixed,jdbcType=VARCHAR},
+		c_down_limit = #{c_down_limit,jdbcType=VARCHAR},
+		c_up_limit = #{c_up_limit,jdbcType=VARCHAR},
+		day_init_limit = #{day_init_limit,jdbcType=VARCHAR},
+		day_limit = #{day_limit,jdbcType=VARCHAR},
+		each_up_limit = #{each_up_limit,jdbcType=VARCHAR},
+		each_down_limit = #{each_down_limit,jdbcType=VARCHAR},
+		c_day_init_limit = #{c_day_init_limit,jdbcType=VARCHAR},
+		c_day_limit = #{c_day_limit,jdbcType=VARCHAR},
+		c_each_up_limit = #{c_each_up_limit,jdbcType=VARCHAR},
+		c_each_down_limit = #{c_each_down_limit,jdbcType=VARCHAR},
+		layered_type = #{layered_type,jdbcType=VARCHAR},
+		card_type = #{card_type,jdbcType=VARCHAR},
+		recharge_type = #{recharge_type,jdbcType=VARCHAR},
+		payment_org = #{payment_org,jdbcType=VARCHAR},
+		payment_account = #{payment_account,jdbcType=VARCHAR},
+		scale_type = #{scale_type,jdbcType=VARCHAR},
+		payment_key = #{payment_key,jdbcType=VARCHAR},
+		state = #{state,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select id, mer_no, prod_node, prod_name, prod_id, fee_type, ratio, fixed,
+		down_limit,
+		up_limit, create_time, update_time, creator, payment_type, c_fee_type, c_ratio,
+		c_fixed,
+		c_down_limit, c_up_limit, day_init_limit, day_limit, each_up_limit,
+		each_down_limit,
+		c_day_init_limit, c_day_limit, c_each_up_limit, c_each_down_limit, layered_type,
+		card_type, recharge_type, payment_org, payment_account, scale_type,
+		payment_key,
+		state
+		from merchant_fee
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, mer_no, prod_node, prod_name, prod_id, fee_type, ratio, fixed,
+		down_limit,
+		up_limit, create_time, update_time, creator, payment_type, c_fee_type, c_ratio,
+		c_fixed,
+		c_down_limit, c_up_limit, day_init_limit, day_limit, each_up_limit,
+		each_down_limit,
+		c_day_init_limit, c_day_limit, c_each_up_limit, c_each_down_limit, layered_type,
+		card_type, recharge_type, payment_org, payment_account, scale_type,
+		payment_key,
+		state
+		from merchant_fee
+	</select>
+</mapper>

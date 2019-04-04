@@ -1,0 +1,44 @@
+
+.liSpinner{
+    margin-top:15px;
+    margin-left:15px;
+}
+
+.spinner {
+    height: 16px;
+    width: 71px;
+    overflow: hidden;
+    *zoom:1;-webkit-box-shadow: 0 3px 3px -4px #aaa;
+    -moz-box-shadow: 0 3px 3px -4px #aaa;
+    box-shadow: 0 3px 3px -4px #aaa;
+    float:left;
+    margin-right:5px;
+}
+
+.spinner button,.spinner .value {
+    text-align: center;
+    display: block;
+    float: left;
+    height: 100%;
+    line-height: 16px;
+    margin: 0
+}
+.spinner button {
+    border: 1px solid #000;
+    background:#fff;
+    width: 16px;
+    color: #e5312a;
+    padding: 0;
+    outline: none;
+}
+
+.spinner .value {
+    width: 24px;
+    height: 16px;
+    border: none;
+    color: #333;
+    padding: 0px;
+    font-size:12px;
+    background:none;
+}
+

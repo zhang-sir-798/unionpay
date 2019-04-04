@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%d %-5level %thread %class{0}:%line] %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="viewError" level="WARN" additivity="true">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<logger name="jdbc.connection" level="OFF" />
+	<logger name="jdbc.audit" level="OFF" />
+	<logger name="jdbc.resultset" level="OFF" />
+	<logger name="jdbc.sqlonly" level="OFF" />
+	<logger name="jdbc.sqltiming" level="OFF" />
+
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>
+

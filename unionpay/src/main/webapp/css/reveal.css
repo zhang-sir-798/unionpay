@@ -1,0 +1,94 @@
+/*	--------------------------------------------------
+	Reveal Modals
+	-------------------------------------------------- */
+
+.reveal-modal-bg {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    background: rgba(0,0,0,.8);
+    z-index: 100;
+    display: none;
+    top: 0;
+    left: 0;
+}
+
+.reveal-modal {
+    visibility: hidden;
+    top: 100px;
+    left: 50%;
+    margin-left: -650px;
+    width: 520px;
+    background: #eee;
+    position: absolute;
+    z-index: 101;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,.4);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,.4);
+    -box-shadow: 0 0 10px rgba(0,0,0,.4);
+}
+
+.reveal-modal.small 		{ width: 200px; margin-left: -140px;}
+.reveal-modal.medium 		{ width: 400px; margin-left: -240px;}
+.reveal-modal.large 		{ width: 600px; margin-left: -340px;}
+.reveal-modal.xlarge 		{ width: 800px; margin-left: -440px;}
+
+.reveal-modal .close-reveal-modal {
+    font-size: 22px;
+    line-height: .5;
+    position: absolute;
+    top: 8px;
+    right: 11px;
+    color: #fff;
+    text-shadow: 0 -1px 1px rgba(0,0,0,.6);
+    font-weight: bold;
+    cursor: pointer;
+}
+.app-modal{
+    width:6rem;
+    left:50%;
+    margin-left:-3rem;
+    background:#fff;
+    top:3rem;
+}
+.app-modal-01{
+    width:3rem;
+    left:50%;
+    margin-left:-1.5rem;
+    background:#fff;
+    top:2rem;
+    padding:0.5rem;
+    font-size:0.24rem;
+}
+.app-modal-01 .but{
+    margin-top:0.2rem;
+}
+.app-modal-01 .but a{
+    padding:0.05rem 0.2rem;
+    border:1px solid #dedede;
+    margin:0 0.05rem;
+    -webkit-border-radius: 0.1rem;
+    -moz-border-radius: 0.1rem;
+    border-radius: 0.1rem;
+    font-size:0.2rem;
+}
+.pop-cont{
+    padding:0.6rem 0.2rem;
+}
+.pop-cont .pull-left{
+    width:1.5rem;
+    margin-left:0.6rem;
+}
+.pop-cont .pull-left img{
+    width:1.3rem;
+}
+.pop-cont .pull-right{
+    width:3rem;
+    font-size:0.4rem;
+}
+.pop-cont .pull-right p{
+    margin-bottom:0.5rem;
+}
