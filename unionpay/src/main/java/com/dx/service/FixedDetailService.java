@@ -406,8 +406,8 @@ public class FixedDetailService {
 
 	public static String sign_qrcode(String serialNo) throws UnsupportedEncodingException {
 		// String url = "https://127.0.0.1:8443/unionpay/gateway/unifiedorder?qr=";
-		String url = "http://open.auth.juuch.com/unionpay/gateway/qrfixed?qr=";
-		String signKey = "65917A01F943CBB02D58791725569DA2";
+		String url = "http://127.0.0.1/unionpay/gateway/qrfixed?qr=";
+		String signKey = "111";
 		String sign = signUtil.MAC(serialNo, signKey);
 		// 地址+4+28+8
 		String qrCode = url + "62FX" + serialNo + sign;
