@@ -200,8 +200,8 @@ public class QrScanUnifiedOrderService {
 				Routemapping r = new Routemapping();
 
 				// TODO 渠道号暂时写死
-				_log.info("#######渠道号暂时写死 ##   24006513          ###############################33");
-				r.setChnl_id(Long.valueOf("24006513"));
+				_log.info("#######渠道号暂时写死 ##   1111          ###############################33");
+				r.setChnl_id(Long.valueOf("1111"));
 
 				r.setSub_mer_id(cm.getSub_mch_id());
 				r.setMer_no(m.getMer_no());
@@ -268,8 +268,8 @@ public class QrScanUnifiedOrderService {
 			Routemapping r = new Routemapping();
 
 			// TODO 渠道号暂时写死
-			_log.info("#######渠道号暂时写死 ##   2088201916734621 = org_pid  ###############################33");
-			r.setChnl_id(Long.valueOf("2088201916734621"));
+			_log.info("#######渠道号暂时写死 ##   1111 = org_pid  ###############################33");
+			r.setChnl_id(Long.valueOf("1111"));
 
 			r.setSub_mer_id(cm.getSub_mch_id());
 			r.setMer_no(m.getMer_no());
@@ -340,8 +340,8 @@ public class QrScanUnifiedOrderService {
 			Routemapping r = new Routemapping();
 
 			// TODO 渠道号暂时写死
-			_log.info("#######渠道号暂时写死 ##   C0001591 = expandcode  ###############################33");
-			r.setChnl_id(Long.valueOf("2088201916734621"));
+			_log.info("#######渠道号暂时写死 ##   1111 = expandcode  ###############################33");
+			r.setChnl_id(Long.valueOf("1111"));
 
 			r.setSub_mer_id(cm.getSub_mch_id());
 			r.setMer_no(m.getMer_no());
@@ -545,9 +545,9 @@ public class QrScanUnifiedOrderService {
 		String url = "https://api.weixin.qq.com/sns/oauth2/access_token";
 		StringBuffer bf = new StringBuffer();
 		bf.append("appid=");
-		bf.append("wxa35fdd49af4a2b27");
+		bf.append("appid");
 		bf.append("&secret=");
-		bf.append("d4ea2066d45d5e18506b713801757465");
+		bf.append("secret");
 		bf.append("&code=");
 		bf.append(codeId);
 		bf.append("&grant_type=authorization_code");
@@ -591,7 +591,7 @@ public class QrScanUnifiedOrderService {
 	}
 
 	public static void main(String[] args) {
-		getOpenId("081smBgs1KBhfm0piths1MkYgs1smBgU");
+		getOpenId("1111");
 	}
 
 }
