@@ -283,9 +283,9 @@ public class DynamicConsume4ATController {
 			bf.append("wxa35fdd49af4a2b27");
 			bf.append("&redirect_uri=");
 			bf.append(java.net.URLEncoder
-					.encode("http://open.auth.juuch.com/unionpay/gateway/tencentp/?qr_id=", "utf-8").toString());
+					.encode("http://127.0.0.1/gateway/tencentp/?qr_id=", "utf-8").toString());
 			// bf.append(
-			// java.net.URLEncoder.encode("https://open.auth.juuch.com/unionpay/gateway/tencentp.php?qr_id=",
+			// java.net.URLEncoder.encode("https://127.0.0.1/gateway/tencentp.php?qr_id=",
 			// "utf-8").toString() );
 			bf.append(serial_no);
 			bf.append("&response_type=code&scope=snsapi_base&state=");
@@ -311,9 +311,9 @@ public class DynamicConsume4ATController {
 			bf.append("wxa35fdd49af4a2b27");
 			bf.append("&redirect_uri=");
 			bf.append(java.net.URLEncoder
-					.encode("http://open.auth.juuch.com/unionpay/gateway/tencentp/?qr_id=", "utf-8").toString());
+					.encode("http://127.0.0.1/gateway/tencentp/?qr_id=", "utf-8").toString());
 			// bf.append(
-			// java.net.URLEncoder.encode("https://open.auth.juuch.com/unionpay/gateway/tencentp.php?qr_id=",
+			// java.net.URLEncoder.encode("https://127.0.0.1/gateway/tencentp.php?qr_id=",
 			// "utf-8").toString() );
 			bf.append(serial_no);
 			bf.append("&response_type=code&scope=snsapi_base&state=");
@@ -400,7 +400,7 @@ public class DynamicConsume4ATController {
 
 	public static void main(String[] args) throws UnsupportedEncodingException {
 		System.out.println(java.net.URLDecoder.decode(
-				"https%3A%2F%2Fchong.qq.com%2Fphp%2Findex.php%3Fd%3D%26c%3DwxAdapter%26m%3DmobileDeal%26showwxpaytitle%3D1%26vb2ctag%3D4_2030_5_1194_60",
+				"https://127.0.0.1",
 				"UTF-8"));
 	}
 
