@@ -205,9 +205,9 @@ public class Notify4ATController {
 		/** 4. 通知下游 **/
 		/*JSONObject jsparams = new JSONObject();
 		OrderDetail or = new OrderDetail();
-		or.setReq_key("8655DF6B92FDA121E0990EE53F58AC52");
-		or.setOrder_no("test20181207193114");
-		or.setSerial_no("20181207193114QLAESI9IHIL9AWE2");
+		or.setReq_key("11");
+		or.setOrder_no("11");
+		or.setSerial_no("11");
 		or.setOrder_amount("1");
 		or.setTrx_type("010201");
 		or.setNotify_url("http://127.0.0.1:8082/unionpay/notify/test");
