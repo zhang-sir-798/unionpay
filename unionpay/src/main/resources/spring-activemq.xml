@@ -17,9 +17,9 @@
 	<!-- 如果连接网络：tcp://ip:61616；未连接网络：tcp://localhost:61616 以及用户名，密码-->
 	
 	<!-- <amq:connectionFactory id="amqConnectionFactory"
-		brokerURL="tcp://127.0.0.1:61616" userName="admin" password="admin" /> -->  	
+		brokerURL="tcp://127.0.0.1:61616" userName="xx" password="xx" /> -->  	
 	<amq:connectionFactory id="amqConnectionFactory"
-		brokerURL="tcp://47.95.19.169:61616" userName="admin" password="admin" />
+		brokerURL="tcp://127.0.0.1:61616" userName="xx" password="xx" />
 	
 	<!-- Spring Caching连接工厂 -->
  	<!-- Spring用于管理真正的ConnectionFactory的ConnectionFactory -->  
