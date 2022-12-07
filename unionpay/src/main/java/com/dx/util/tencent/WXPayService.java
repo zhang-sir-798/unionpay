@@ -25,8 +25,8 @@ public class WXPayService {
 	private static WXPay wxpay;
 	// out_trade_no 商户订单号 商户系统内部订单号，要求32个字符内，只能是数字、大小写字母，且在同一个商户号下唯一
 	// 刷卡支付、统一下单时生成， 其他操作如查询订单，撤销等需手动录入已生成的out_trade_no
-	private static String out_trade_no = "121775250120140703" + System.currentTimeMillis();
-	// private String out_trade_no = "1217752501201407031522907242000";
+	private static String out_trade_no = "11" + System.currentTimeMillis();
+	// private String out_trade_no = "11";
 
 	static {
 		wxpay = new WXPay();
@@ -68,10 +68,10 @@ public class WXPayService {
 		/**
 		 * 组装请求报文
 		 */
-		data.put("auth_code", "134619956881302417"); // 扫码支付授权码，设备读取用户微信中的条码或者二维码信息（注：用户刷卡条形码规则：18位纯数字，以10、11、12、13、14、15开头）
+		data.put("auth_code", "11"); // 扫码支付授权码，设备读取用户微信中的条码或者二维码信息（注：用户刷卡条形码规则：18位纯数字，以10、11、12、13、14、15开头）
 		data.put("fee_type", "CNY"); // 符合ISO 4217标准的三位字母代码，默认人民币：CNY
 		data.put("total_fee", "1"); // 订单总金额，单位为分，只能为整数
-		data.put("device_info", "013467007045764"); // 终端设备号(商户自定义，如门店编号)
+		data.put("device_info", "11"); // 终端设备号(商户自定义，如门店编号)
 		data.put("body", "腾讯充值中心-QQ会员充值"); // 商品或支付单简要描述，格式要求：门店品牌名-城市分店名-实际商品名称
 		List<Object> goodsDetails = new LinkedList<Object>();
 		Map<String, Object> goodsDetail = new LinkedHashMap<String, Object>();
@@ -79,28 +79,28 @@ public class WXPayService {
 		goodsDetail.put("wxpay_goods_id", "1001"); // 微信支付定义的统一商品编号（没有可不传）
 		goodsDetail.put("goods_name", "iPhone6s 16G"); // 商品的实际名称
 		goodsDetail.put("quantity", 1); // 用户购买的数量
-		goodsDetail.put("price", 528800); // 单位为：分。如果商户有优惠，需传输商户优惠后的单价(例如：用户对一笔100元的订单使用了商场发的优惠券100-50，则活动商品的单价应为原单价-50)
+		goodsDetail.put("price", 11); // 单位为：分。如果商户有优惠，需传输商户优惠后的单价(例如：用户对一笔100元的订单使用了商场发的优惠券100-50，则活动商品的单价应为原单价-50)
 		goodsDetails.add(goodsDetail);
 		Map<String, Object> detail = new LinkedHashMap<String, Object>();
 		/**
 		 * 订单原价 cost_price 1.商户侧一张小票订单可能被分多次支付，订单原价用于记录整张小票的交易金额。
 		 * 2.当订单原价与支付金额不相等，则不享受优惠。 3.该字段主要用于防止同一张小票分多次支付，以享受多次优惠的情况，正常支付订单不必上传此参数。
 		 */
-		detail.put("cost_price", 608800);
+		detail.put("cost_price", 11);
 		detail.put("receipt_id", "wx123"); // 商家小票ID
 		detail.put("goods_detail", goodsDetails); // 单品信息，使用Json数组格式提交
 		data.put("detail", JsonUtil.toJsonNotNull(detail)); // 单品优惠活动信息
 		data.put("attach", "说明"); // 商家数据包，原样返回
 		data.put("spbill_create_ip", "8.8.8.8"); // APP和网页支付提交用户端Ip，Native支付填调用微信支付API的机器IP。
 		data.put("goods_tag", "WXG"); // 订单优惠标记，代金券或立减优惠功能的参数
-		data.put("notify_url", "http://www.weixin.qq.com/wxpay/pay.php"); // 接收银联异步通知回调地址，通知url必须为直接可访问的url，不能携带参数。
+		data.put("notify_url", "11"); // 接收银联异步通知回调地址，通知url必须为直接可访问的url，不能携带参数。
 		data.put("trade_type", "JSAPI"); // JSAPI 公众号支付 NATIVE 扫码支付 APP APP支付
 		data.put("limit_pay", "no_credit"); // no_credit--指定不能使用信用卡支付
-		data.put("openid", "oUpF8uOYunOKJ-g7EjhjXayypnIs"); // 用户在商户appid 下的唯一标识
-		data.put("sub_openid", "oUpF8uOYunOKJ-g7EjhjXayypnIs"); // 子商户appid下用户唯一标识，如需返回则请求时需要传sub_appid
+		data.put("openid", "11"); // 用户在商户appid 下的唯一标识
+		data.put("sub_openid", "11"); // 子商户appid下用户唯一标识，如需返回则请求时需要传sub_appid
 		Map<String, Object> identity = new LinkedHashMap<String, Object>();
 		identity.put("type", "IDCARD"); // 证件类型
-		identity.put("number", "330000000000000000"); // 证件号，如身份证号
+		identity.put("number", "11"); // 证件号，如身份证号
 		identity.put("name", "张三"); // 证件姓名
 		data.put("identity", JsonUtil.toJsonNotNull(identity)); // 实名支付信息
 		// 场景信息
@@ -362,7 +362,7 @@ public class WXPayService {
 	public Map<String, String> doSubmchManageAdd(Merchant merchant) {
 		_log.info("微信侧接口--下属商户录入");
 		
-		String business = "165";
+		String business = "11";
 		
 		HashMap<String, String> data = new HashMap<String, String>();
 		data.put("merchant_name", merchant.getMer_name());// 商户名称  该名称是公司主体全称，绑定公众号时会对主体一致性校验
@@ -430,7 +430,7 @@ public class WXPayService {
 																// 订单生成时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010
 		data.put("time_expire", commonData.get("time_expire"));
 		// data.put("time_start", TimeUtil.getFormatTime(date, JsonUtil.TIME_FORMAT));
-		// // 交易起始时间 订单生成时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为20091225091010
+		// // 交易起始时间 订单生成时间，格式为yyyyMMddHHmmss，如2009年12月25日9点10分10秒表示为11
 		// data.put("time_expire", TimeUtil.getFormatTime(TimeUtil.addDay(date,
 		// JsonUtil.TIME_EXPIRE),JsonUtil.TIME_FORMAT));
 		data.put("openid", commonData.get("openid"));
@@ -462,7 +462,7 @@ public class WXPayService {
 
 	public void doParseNotifyInfo() throws Exception {
 		System.out.println("支付结果通知");
-		String notifyInfo = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><xml><return_code><![CDATA[SUCCESS]]></return_code><appid><![CDATA[wx2421b1c4370ec43b]]></appid><mch_id><![CDATA[1900009211]]></mch_id><sub_mch_id><![CDATA[204329164]]></sub_mch_id><nonce_str><![CDATA[00c27521b4c2417d9728140adc2ce075]]></nonce_str><result_code><![CDATA[SUCCESS]]></result_code><openid><![CDATA[085e9858e9b4087b42c48c10d]]></openid><trade_type><![CDATA[NATIVE]]></trade_type><bank_type><![CDATA[CFT]]></bank_type><total_fee><![CDATA[1]]></total_fee><fee_type><![CDATA[CNY]]></fee_type><cash_fee><![CDATA[1]]></cash_fee><cash_fee_type><![CDATA[CNY]]></cash_fee_type><coupon_fee><![CDATA[0]]></coupon_fee><transaction_id><![CDATA[4200000073201804052565968048]]></transaction_id><out_trade_no><![CDATA[2018040450000013]]></out_trade_no><time_end><![CDATA[19700101080000]]></time_end><sign><![CDATA[JYh85YUhWRAFglVirVOdUJaMmeIbPLQBn+s0CDy6mih/WBpeYOej0VsR6kov6ruR/97Yq7Fep5VdAHf1hpapSHaQVntQBQ+wO4ritWeoAWs5SyYtMNPhBWgSbOhl3Vr36qk85rcpyd9nMe1mwoC3XqHvv88/q+juVWzp7rdUKwaTx0ip7NSZcY9ukhI1lThkG5r8iexmF9tpAynoJFYjAw9/xFHiwRsZQdga4obe2b6uZF9kqKZ4tXAHEwrgcatTaqXfDYPFCnec4VWfJAKA/FXcwmT1J8HeL5DrwTmw39RD0EbaYPO0chY8R7tYyb+fvLVCj0/dJXcJY6bLW2KG7A==]]></sign></xml>";
+		String notifyInfo = "11";
 		wxpay.processResponseXml(notifyInfo);
 	}
 
