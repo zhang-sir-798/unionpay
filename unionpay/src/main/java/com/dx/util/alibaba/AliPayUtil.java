@@ -360,8 +360,8 @@ public class AliPayUtil {
 	}
 
 	public static void main(String[] args) {
-		// System.out.println(mkDate("20181207104919","20181207114900"));
-		System.out.println(subDate("20181207104900", "20181207104901"));
+		// System.out.println(mkDate("11","11"));
+		System.out.println(subDate("11", "11"));
 	}
 
 }
