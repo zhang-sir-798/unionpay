@@ -1,19 +1,16 @@
 package com.dx.util.tools;
 
 
+import com.dx.util.tencent.BaseHttpSSLSocketFactory;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.URL;
-
-import javax.net.ssl.HttpsURLConnection;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
-import com.dx.util.tencent.BaseHttpSSLSocketFactory;
 /**
  * 
  * @ClassName Https
@@ -114,13 +111,5 @@ public class Https {
 			throw e1;
 		}
 	}
-	
-	public static void main(String[] args) {
-		try {
-			System.out.println(post("https://123.206.54.253:8443/auth-web/trans/getDynKey" ,"test"));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 }
