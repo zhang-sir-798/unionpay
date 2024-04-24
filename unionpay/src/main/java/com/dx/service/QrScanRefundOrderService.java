@@ -285,9 +285,9 @@ public class QrScanRefundOrderService extends MchNotifyComponent {
 		String url = "https://api.weixin.qq.com/sns/oauth2/access_token";
 		StringBuffer bf = new StringBuffer();
 		bf.append("appid=");
-		bf.append("wxa35fdd49af4a2b27");
+		bf.append("appid");
 		bf.append("&secret=");
-		bf.append("d4ea2066d45d5e18506b713801757465");
+		bf.append("secret");
 		bf.append("&code=");
 		bf.append(codeId);
 		bf.append("&grant_type=authorization_code");

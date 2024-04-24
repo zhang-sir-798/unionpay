@@ -257,13 +257,13 @@ public class Refund4ATController {
 		
 		
 		RefundDetail or = new RefundDetail();
-		or.setReq_key("8655DF6B92FDA121E0990EE53F58AC52");
-		or.setNotify_url("https://open.auth.juuch.com/unionpay/notify/test");
-		or.setMer_no("3125931153");
-		or.setOrder_no("AT20181217192103Vm00m2huaHlENzYF");
+		or.setReq_key("11");
+		or.setNotify_url("https://127.0.0.1/notify/test");
+		or.setMer_no("11");
+		or.setOrder_no("11");
 		
-		or.setSerial_no("20181217192100CSUCYTL47WRFLFLQ");
-		or.setRefund_no("RE20181217192103Vm00m2huaHlENzYF");
+		or.setSerial_no("11");
+		or.setRefund_no("11");
 		or.setRefund_amount("1");	
 		or.setRefund_state("REFUNDSUCCESS");	
 		

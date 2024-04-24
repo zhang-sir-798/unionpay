@@ -83,10 +83,10 @@ public class AliPayService {
 	// 商户入驻
 
 	public Map<String, String> doIndirectCreate(Merchant m) {
-		// "sub_merchant_id":"2088000388892525"
+		
 		System.out.println("商户入驻");
 		
-		String business = "5976";
+		String business = "11";
 			
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		data.put("external_id", m.getMer_no()); // 商户编号，由机构定义，需要保证在机构下唯一
@@ -94,8 +94,8 @@ public class AliPayService {
 		data.put("alias_name", m.getShort_name()); // 商户简称
 		data.put("service_phone", m.getLegal_contact()); // 商户客服电话
 		data.put("mcc", business); // 标准商户类别码，business
-		data.put("source", "2088501624560335"); // 商户来源机构标识，填写机构在支付宝的pid
-		data.put("org_pid", "2088721382101609"); // 商户来源机构标识，填写机构在支付宝的pid
+		data.put("source", "11"); // 商户来源机构标识，填写机构在支付宝的pid
+		data.put("org_pid", "11"); // 商户来源机构标识，填写机构在支付宝的pid
 		// 商户联系人信息
 		List<Object> contactInfo = new LinkedList<Object>();
 		Map<String, Object> infos = new LinkedHashMap<String, Object>();
@@ -128,8 +128,8 @@ public class AliPayService {
 		/**
 		 * 组装请求报文
 		 */
-		data.put("sub_merchant_id", "2088031855065735"); // 商户在支付宝入驻成功后，生成的支付宝内全局唯一的商户编号，与external_id二选一必传
-		// data.put("external_id", "105290059990194");
+		data.put("sub_merchant_id", "11"); // 商户在支付宝入驻成功后，生成的支付宝内全局唯一的商户编号，与external_id二选一必传
+		// data.put("external_id", "11");
 		// //商户编号，由机构定义，需要保证在机构下唯一，与sub_merchant_id二选一
 		try {
 			alipay.indirectQuery(data); // 商户信息查询
@@ -146,15 +146,15 @@ public class AliPayService {
 		/**
 		 * 组装请求报文
 		 */
-		data.put("sub_merchant_id", "2088031855065735"); // 商户在支付宝入驻成功后，生成的支付宝内全局唯一的商户编号，与external_id二选一必传
+		data.put("sub_merchant_id", "11"); // 商户在支付宝入驻成功后，生成的支付宝内全局唯一的商户编号，与external_id二选一必传
 		// data.put("external_id", "xxx"); // 商户编号，由机构定义，需要保证在机构下唯一，与sub_merchant_id二选一
 		data.put("name", "测试"); // 商户名称
 		data.put("alias_name", "test"); // 商户简称
-		data.put("source", "2088911212416201"); // 商户来源机构标识，填写机构在支付宝的pid
-		data.put("service_phone", "95188"); // 商户客服电话
-		data.put("category_id", "2015050700000000"); // 商户经营类目
+		data.put("source", "11"); // 商户来源机构标识，填写机构在支付宝的pid
+		data.put("service_phone", "11"); // 商户客服电话
+		data.put("category_id", "11"); // 商户经营类目
 		// 非必填
-		data.put("business_license", "100000011234561"); // 商户证件编号（企业或者个体工商户提供营业执照，事业单位提供事证号）
+		data.put("business_license", "11"); // 商户证件编号（企业或者个体工商户提供营业执照，事业单位提供事证号）
 		/**
 		 * 商户证件类型，取值范围：NATIONAL_LEGAL：营业执照；
 		 * NATIONAL_LEGAL_MERGE:营业执照(多证合一)；INST_RGST_CTF：事业单位法人证书
@@ -190,7 +190,7 @@ public class AliPayService {
 		data.put("contact_info", JSONArray.fromObject(contactInfo));
 		List<Object> bankcardInfo = new LinkedList<Object>();
 		Map<String, Object> bankinfos = new LinkedHashMap<String, Object>();
-		bankinfos.put("card_no", "6228480402637874213"); // 银行卡号
+		bankinfos.put("card_no", "11"); // 银行卡号
 		bankinfos.put("card_name", "张三"); // 银行卡持卡人姓名
 		bankcardInfo.add(bankinfos);
 		data.put("bankcard_info", JSONArray.fromObject(bankcardInfo));
@@ -216,7 +216,7 @@ public class AliPayService {
 		data.put("out_trade_no", out_trade_no);
 		System.out.println("商户订单号=[" + out_trade_no + "]");
 		Map<String, Object> SubMerchant = new HashMap<String, Object>();
-		SubMerchant.put("merchant_id", "2088000388892525");
+		SubMerchant.put("merchant_id", "11");
 		// SubMerchant.put("merchant_type", "alipay");
 		data.put("sub_merchant", SubMerchant);
 		data.put("subject", "Iphone6 16G"); // 订单标题
@@ -227,7 +227,7 @@ public class AliPayService {
 		 */
 		data.put("total_amount", 1);
 		data.put("body", "Iphone6 16G"); // 订单描述
-		data.put("buyer_logon_id", "15800923275"); // 买家的支付宝唯一用户号（2088开头的16位纯数字）,和buyer_logon_id不能同时为空
+		data.put("buyer_logon_id", "11"); // 买家的支付宝唯一用户号（2088开头的16位纯数字）,和buyer_logon_id不能同时为空
 		// 非必填
 		data.put("seller_id", ""); // 如果该值为空，则默认为商户签约账号对应的支付宝用户ID
 		/**
@@ -248,7 +248,7 @@ public class AliPayService {
 		// 非必填
 		goodsDetail.put("alipay_goods_id", "20010001"); // 支付宝定义的统一商品编号
 		goodsDetail.put("price", 0.01); // 商品单价，单位为元
-		goodsDetail.put("goods_category", "34543238"); // 商品类目
+		goodsDetail.put("goods_category", "11"); // 商品类目
 		goodsDetail.put("body", "特价手机"); // 商品描述信息
 		goodsDetail.put("show_url", "http://www.alipay.co m/xxx.jpg"); // 商品的展示地址
 		goodsDetails.add(goodsDetail);
@@ -269,7 +269,7 @@ public class AliPayService {
 		// ebitCardExpress");
 		data.put("terminal_id", "NJ_T_001"); // 商户机具终端编号
 		Map<String, Object> extendParams = new LinkedHashMap<String, Object>();
-		extendParams.put("sys_service_provider_id", "2088511833207846");
+		extendParams.put("sys_service_provider_id", "11");
 		// 系统商编号该参数作为系统商返佣数据提取的依据，请填写系统商签约协议的PID
 		extendParams.put("hb_fq_num", ""); // 使用花呗分期要进行的分期数
 		extendParams.put("hb_fq_seller_percent", ""); // 使用花呗分期需要卖家承担的手续费比例的百分值，传入100代表100%
@@ -289,13 +289,13 @@ public class AliPayService {
 		// 外部指定买家
 		Map<String, Object> extUserInfo = new LinkedHashMap<String, Object>();
 		extUserInfo.put("name", "李明"); // 姓名 注： need_check_info=T时该参数才有效
-		extUserInfo.put("mobile", "16587658765"); // 手机号注：该参数暂不校验
+		extUserInfo.put("mobile", "11"); // 手机号注：该参数暂不校验
 		/**
 		 * 身份证：IDENTITY_CARD、 护照：PASSPORT、 军官证：OFFICER_CARD、 士兵证：SOLDIER_CARD、
 		 * 户口本：HOKOU等。 如有其它类型需要支持，请与蚂蚁金服工作人员联系。注： need_check_info=T时该参数才有效
 		 */
 		extUserInfo.put("cert_type", "IDENTITY_CARD");
-		extUserInfo.put("cert_no", "362334768769238881"); // 证件号 注：need_check_info=T时该参数才有效
+		extUserInfo.put("cert_no", "11"); // 证件号 注：need_check_info=T时该参数才有效
 		/**
 		 * 允许的最小买家年龄，买家年龄必须大于等于所传数值注： 1. need_check_info=T时该参数才有效 2. min_age为整数，必须大于等于0
 		 */
@@ -318,18 +318,18 @@ public class AliPayService {
 		// RoyaltyDetailInfos.put("trans_in_type", "userId");
 		// RoyaltyDetailInfos.put("batch_no", "123"); // 分账批次号分账批次号。目前需要和转入账号类型为
 		// // bankIndex配合使用。
-		// RoyaltyDetailInfos.put("out_relation_id", "20131124001");
+		// RoyaltyDetailInfos.put("out_relation_id", "11");
 		// //商户分账的外部关联号，用于关联到每一笔分账信息，商户需保证其唯一性。如果为空，该值则默认为“商户网站唯一订单号+分账序列号”
 		// RoyaltyDetailInfos.put("trans_out_type", "userId");
 		// //要分账的账户类型目前只支持userId：支付宝账号对应的支付宝唯一用户号默认值为userId。
-		// RoyaltyDetailInfos.put("trans_out", "2088101126765726");
+		// RoyaltyDetailInfos.put("trans_out", "11");
 		// //如果转出账号类型为userId，本参数为要分账的支付宝账号对应的支付宝唯一用户号。以2088开头的纯16位数字。
 		// /**
 		// * 如果转入账号类型为userId，本参数为接受分账金额的支付宝账号对应的支付宝唯一用户号。
 		// * 以2088开头的纯16位数字。如果转入账号类型为bankIndex，
 		// * 本参数为28位的银行编号（商户和支付宝签约时确定）。 如果转入账号类型为storeId，本参数为商户的门店ID。
 		// */
-		// RoyaltyDetailInfos.put("trans_in", "2088101126708402");
+		// RoyaltyDetailInfos.put("trans_in", "11");
 		// RoyaltyDetailInfos.put("amount", 0.1); // 分账的金额，单位为元
 		// RoyaltyDetailInfos.put("desc", "分账测试1"); // 分账描述信息
 		// RoyaltyDetailInfos.put("amount_percentage", "100"); //分账的比例，值为20代表按20%的比例分账
@@ -413,10 +413,10 @@ public class AliPayService {
 		// 商户订单号,64个字符以内、只能包含字母、数字、下划线；需保证在商户端不重复
 		data.put("out_trade_no", out_trade_no);
 		data.put("scene", "bar_code"); // 支付场景 条码支付，取值：bar_code 声波支付，取值：wave_code
-		data.put("auth_code", "288186539097317031"); // 支付授权码，25~30开头的长度为16~24位的数字，实际字符串长度以开发者获取的付款码长度为准
+		data.put("auth_code", "11"); // 支付授权码，25~30开头的长度为16~24位的数字，实际字符串长度以开发者获取的付款码长度为准
 		data.put("subject", "Iphone6 16G"); // 订单标题
 		Map<String, Object> SubMerchant = new HashMap<String, Object>();
-		SubMerchant.put("merchant_id", "2088031855065735");
+		SubMerchant.put("merchant_id", "11");
 		SubMerchant.put("merchant_type", "alipay");
 		data.put("sub_merchant", SubMerchant);
 		// 非必填
@@ -464,7 +464,7 @@ public class AliPayService {
 		// 非必填
 		goodsDetail.put("alipay_goods_id", "20010001"); // 支付宝定义的统一商品编号
 		goodsDetail.put("price", 0.01); // 商品单价，单位为元
-		goodsDetail.put("goods_category", "34543238"); // 商品类目
+		goodsDetail.put("goods_category", "11"); // 商品类目
 		goodsDetail.put("body", "特价手机"); // 商品描述信息
 		goodsDetail.put("show_url", "http://www.alipay.co m/xxx.jpg"); // 商品的展示地址
 		goodsDetails.add(goodsDetail);
@@ -500,22 +500,22 @@ public class AliPayService {
 		 * 禁用支付渠道,多个渠道以逗号分割，如同时禁用信用支付类型和积分， 则disable_pay_channels="cre dit_group,point"
 		 */
 		// data.put("disable_pay_channels", "credit_group");
-		// data.put("merchant_order_no", "201008123456789"); //商户的原始订单号
+		// data.put("merchant_order_no", "11"); //商户的原始订单号
 		/**
 		 * 预授权号，预授权转交易请求中传入，适用于预授权转交易业务使用， 目前只支持FUND_TRADE_FAST_PAY（资金订单即时到帐交易）、
 		 * 境外预授权产品（OVERSEAS_AUTH_PAY）两个产品。
 		 */
-		// data.put("auth_no", "2016110310002001760201905725");
+		// data.put("auth_no", "11");
 		// 外部指定买家
 		Map<String, Object> extUserInfo = new LinkedHashMap<String, Object>();
 		extUserInfo.put("name", "李明"); // 姓名 注： need_check_info=T时该参数才有效
-		extUserInfo.put("mobile", "16587658765"); // 手机号注：该参数暂不校验
+		extUserInfo.put("mobile", "11"); // 手机号注：该参数暂不校验
 		/**
 		 * 身份证：IDENTITY_CARD、 护照：PASSPORT、 军官证：OFFICER_CARD、 士兵证：SOLDIER_CARD、
 		 * 户口本：HOKOU等。 如有其它类型需要支持，请与蚂蚁金服工作人员联系。注： need_check_info=T时该参数才有效
 		 */
 		extUserInfo.put("cert_type", "IDENTITY_CARD");
-		extUserInfo.put("cert_no", "362334768769238881"); // 证件号
+		extUserInfo.put("cert_no", "11"); // 证件号
 															// 注：need_check_info=T时该参数才有效
 		/**
 		 * 允许的最小买家年龄，买家年龄必须大于等于所传数值注： 1. need_check_info=T时该参数才有效 2. min_age为整数，必须大于等于0
@@ -542,14 +542,14 @@ public class AliPayService {
 		// //商户分账的外部关联号，用于关联到每一笔分账信息，商户需保证其唯一性。如果为空，该值则默认为“商户网站唯一订单号+分账序列号”
 		// RoyaltyDetailInfos.put("trans_out_type", "userId");
 		// //要分账的账户类型目前只支持userId：支付宝账号对应的支付宝唯一用户号默认值为userId。
-		// RoyaltyDetailInfos.put("trans_out", "2088101126765726");
+		// RoyaltyDetailInfos.put("trans_out", "11");
 		// //如果转出账号类型为userId，本参数为要分账的支付宝账号对应的支付宝唯一用户号。以2088开头的纯16位数字。
 		// /**
 		// * 如果转入账号类型为userId，本参数为接受分账金额的支付宝账号对应的支付宝唯一用户号。
 		// * 以2088开头的纯16位数字。如果转入账号类型为bankIndex，
 		// * 本参数为28位的银行编号（商户和支付宝签约时确定）。 如果转入账号类型为storeId，本参数为商户的门店ID。
 		// */
-		// RoyaltyDetailInfos.put("trans_in", "2088101126708402");
+		// RoyaltyDetailInfos.put("trans_in", "11");
 		// RoyaltyDetailInfos.put("amount", 0.1); // 分账的金额，单位为元
 		// RoyaltyDetailInfos.put("desc", "分账测试1"); // 分账描述信息
 		// RoyaltyDetailInfos.put("amount_percentage", "100"); //分账的比例，值为20代表按20%的比例分账
@@ -564,7 +564,7 @@ public class AliPayService {
 		// data.put("auth_confirm_mode", "COMPLETE");
 		// json格式；商户传入终端设备相关信息，具体值要和支付宝约定
 		// data.put("terminal_params",
-		// "{\"credential\":\"28763443825664394:20180207192030954:abcdefGH
+		// "{\"credential\":\"11:11:abcdefGH
 		// IJKLMN\",\"signature\":\" xxxxxxx\",\"terminalType\":\"IOT\"}");
 		// data.put("business_params", "{\"data\":\"123\"}"); //
 		// 商户传入业务信息，具体值要和支付宝约定，应用于安全，营销等参数直传场景，格式为json格式
@@ -583,8 +583,8 @@ public class AliPayService {
 		/**
 		 * 组装请求报文
 		 */
-		data.put("out_trade_no", "tradeprecreate15242084564057922493"); // 原支付请求的商户订单号,和支付宝交易号不能同时为空
-		// data.put("trade_no", "2014112611001004680073956707"); //
+		data.put("out_trade_no", "11"); // 原支付请求的商户订单号,和支付宝交易号不能同时为空
+		// data.put("trade_no", "11"); //
 		// 支付宝交易号，和商户订单号不能同时为空
 		try {
 			alipay.tradeCancle(data); // 统一收单交易撤销

@@ -327,9 +327,9 @@ public class OrderDetailService {
 	}
 	
 	public static String sign_qrcode(String serialNo) throws UnsupportedEncodingException {
-		//String url = "http://test.ngrok.xiaomiqiu.cn/unionpay/gateway/unifiedorder?qr=";
-		String url = "http://open.auth.juuch.com/unionpay/gateway/unifiedorder?qr=";
-		String signKey = "65917A01F943CBB02D58791725569DA2";
+		//String url = "http://127.0.0.1/unionpay/gateway/unifiedorder?qr=";
+		String url = "http://127.0.0.1/unionpay/gateway/unifiedorder?qr=";
+		String signKey = "11";
 		String sign = signUtil.MAC(serialNo , signKey);
 		String qrCode = url + serialNo+sign;
 		String ret = java.net.URLEncoder.encode(qrCode, "utf-8");

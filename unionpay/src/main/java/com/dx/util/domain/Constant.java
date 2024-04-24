@@ -91,9 +91,8 @@ public class Constant {
 	public final static String CERTPATH = "/home/app/certs/unionkey/acp_test_sign_inst.pfx";
 	// public final static String CERTPATH = "f:/certs/acp_test_sign_inst.pfx";
 
-	// public final static String PAYMENT_IP="60.205.113.140";
-	public final static String PAYMENT_IP = "10.10.10.32";
-	public final static int PAYMENT_PORT = 8916;
+	public final static String PAYMENT_IP = "127.0.0.1";
+	public final static int PAYMENT_PORT = 8888;
 	public final static String PAYMENT_CALLBACK = "http://xxxx/middlepaytrx/notify/pay/paySysNotify";
 
 	public final static String QUICK_PAY_CONCODE_OPENK = "OPENK"; // 快捷开通发短信
