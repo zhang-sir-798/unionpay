@@ -1,14 +1,13 @@
 package com.dx.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.alibaba.fastjson.JSONObject;
+import com.dx.service.OrderDetailService;
+import com.dx.service.QrScanUnifiedOrderService;
+import com.dx.service.RouteMappingService;
+import com.dx.service.ValidatePayService;
+import com.dx.util.domain.Constant;
+import com.dx.util.domain.Retutil;
+import com.dx.util.domain.TrxEnum;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSONObject;
-import com.dx.service.OrderDetailService;
-import com.dx.service.RouteMappingService;
-import com.dx.service.QrScanUnifiedOrderService;
-import com.dx.service.ValidatePayService;
-import com.dx.util.domain.Constant;
-import com.dx.util.domain.Retutil;
-import com.dx.util.domain.TrxEnum;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 
@@ -92,7 +90,7 @@ public class DynamicConsume4ATController {
 	/**
 	 * 统一下单接口-真实下单: 1)聚合支付下单微信侧与阿里侧
 	 * 
-	 * @param params
+	 * @param request
 	 * @return
 	 */
 	@RequestMapping(value = "/gateway/unifiedorder", method = { RequestMethod.POST, RequestMethod.GET })
@@ -196,10 +194,10 @@ public class DynamicConsume4ATController {
 	/**
 	 * 微信redirect:
 	 *
-	 * @param params
+	 * @param request
 	 * @return ModelAndView
 	 */
-	@RequestMapping(value = "/gateway/tencentp/", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "/gateway/tencent", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
 	public ModelAndView tencentp(HttpServletRequest request, HttpServletResponse response) {
 		_log.info("###### 接受微信redirect消息: ######");
@@ -306,15 +304,11 @@ public class DynamicConsume4ATController {
 		String serial_no = jsonParam.getString("serial_no") + "@" + ip +"@" + jsonParam.getString("transAmt");
 		StringBuffer bf = new StringBuffer();
 		try {
-			bf.append("https://open.weixin.qq.com/connect/oauth2/authorize");// wx_oauth2
+			bf.append("https://xxxx.com/connect/oauth2/authorize");// wx_oauth2
 			bf.append("?appid=");
-			bf.append("wxa35fdd49af4a2b27");
+			bf.append("xxxx");
 			bf.append("&redirect_uri=");
-			bf.append(java.net.URLEncoder
-					.encode("http://127.0.0.1/gateway/tencentp/?qr_id=", "utf-8").toString());
-			// bf.append(
-			// java.net.URLEncoder.encode("https://127.0.0.1/gateway/tencentp.php?qr_id=",
-			// "utf-8").toString() );
+			bf.append(java.net.URLEncoder.encode("http://127.0.0.1/gateway/tencentp/?qr_id=", "utf-8").toString());
 			bf.append(serial_no);
 			bf.append("&response_type=code&scope=snsapi_base&state=");
 			bf.append(serial_no);

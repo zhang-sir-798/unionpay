@@ -1,21 +1,20 @@
 package com.dx.controller;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 /**
  * 
  * @ClassName NotifyUnionPayCodeController
  * @Description 银联小微平台二维码回调接口
- * @author zx
+ * @author zhang_sir
  * @Date 2018年8月1日 上午11:57:13
  * @version 1.0.0
  */

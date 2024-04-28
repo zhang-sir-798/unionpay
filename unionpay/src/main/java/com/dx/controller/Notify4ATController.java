@@ -1,28 +1,5 @@
 package com.dx.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.InetAddress;
-import java.net.URLDecoder;
-import java.net.UnknownHostException;
-import java.util.Map;
-
-import javax.servlet.ServletInputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.alibaba.fastjson.JSONObject;
 import com.dx.model.OrderDetail;
 import com.dx.service.MchNotifyService;
@@ -34,6 +11,23 @@ import com.dx.util.domain.RetEnum;
 import com.dx.util.tencent.WXPay;
 import com.dx.util.tencent.WXPayConstants;
 import com.dx.util.tencent.WXPayUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
+import java.net.InetAddress;
+import java.net.URLDecoder;
+import java.net.UnknownHostException;
+import java.util.Map;
 
 /**
  * 
@@ -63,15 +57,6 @@ public class Notify4ATController {
 	@ResponseBody
 	public void wxPayNotify(HttpServletRequest request, HttpServletResponse response) {
 
-		
-		/*JSONObject js = new JSONObject();
-		try {
-			doWeChatNotifyMch(js);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		
 		String ip = getIpAddr(request);
 		log.info("##微信支付回调get访问IP:{" + ip + "}");
 		try {
@@ -110,7 +95,7 @@ public class Notify4ATController {
 			out.flush();
 			out.close();
 			log.info("##响应阿里后台message:" + messages.getString("respString") + ",响应上游后开启回调下游等业务。");
-			// TODO 通知下游等。。。
+			//通知下游
 			doWeChatNotifyMch(messages);
 
 		} catch (Exception e) {

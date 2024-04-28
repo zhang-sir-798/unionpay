@@ -1,29 +1,5 @@
 package com.dx.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.ServletInputStream;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.alibaba.fastjson.JSONObject;
 import com.dx.model.RefundDetail;
 import com.dx.service.MchNotifyService;
@@ -38,6 +14,27 @@ import com.dx.util.tencent.AESUtil;
 import com.dx.util.tencent.WXPay;
 import com.dx.util.tencent.WXPayConstants;
 import com.dx.util.tencent.WXPayUtil;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.ServletInputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 
@@ -162,24 +159,6 @@ public class Refund4ATController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		/*
-		String ip = getIpAddr(request);
-		_log.info("##微信退款回调访问IP:{" + ip + "}");
-		try {
-			response.setContentType("text/xml");
-			JSONObject messages = doWeChatRefundNotify(request, response);
-			BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
-			out.write(messages.getString("respString").getBytes());
-			out.flush(); 
-			out.close();
-			_log.info("##响应微信后台message:" + messages + ",响应上游后开启回调下游等业务。"); 
-			// TODO 通知下游等。。。
-			doWeChatRefund(messages);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
 
 	}
 	/**
@@ -188,7 +167,7 @@ public class Refund4ATController {
 	 * PrintWriter out = response.getWriter(); 
 	 * out.write(noticeStr);
 	 * 
-	 * @param params
+	 * @param req
 	 * @return
 	 */
 	@SuppressWarnings("unused")
