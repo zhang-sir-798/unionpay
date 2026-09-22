@@ -38,7 +38,7 @@ import java.util.Map;
 @Controller
 public class DynamicConsume4ATController {
 
-	private static final Log _log = LogFactory.getLog(DynamicConsume4ATController.class);
+	private static final Log logger = LogFactory.getLog(DynamicConsume4ATController.class);
 	@Autowired
 	private OrderDetailService orderService;
 	@Autowired
@@ -59,7 +59,7 @@ public class DynamicConsume4ATController {
 	@RequestMapping(value = "/gateway/qrcode", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
 	public String qrcode(@RequestParam String params) {
-		_log.info("##开始接收AT聚合码业务统一下单请求 ,请求参数params=" + params);
+		logger.info("##开始接收AT聚合码业务统一下单请求 ,请求参数params=" + params);
 
 		String respMessage = "";
 		Map<String, String> map = new HashMap<String, String>();
@@ -81,7 +81,7 @@ public class DynamicConsume4ATController {
 			return respMessage;
 
 		} catch (Exception e) {
-			_log.error(e);
+			logger.error(e);
 			return Retutil.business(null);
 		}
 
@@ -99,13 +99,13 @@ public class DynamicConsume4ATController {
 		String requrl = getUrl(request);
 		String redirecturl = "";
 
-		_log.info("###### 开始接收AT聚合码业务统一下单真实请求 ######");
+		logger.info("###### 开始接收AT聚合码业务统一下单真实请求 ######");
 		Map<String, String> map = null;
 		try {
 
 			map = valiPayService.ATcodeValidateSign(request);
 			if (!Constant.T_INSIDE.equals(map.get(Constant.RT_INSIDE))) {
-				_log.info("签名验证失败，交易存在风险。");
+				logger.info("签名验证失败，交易存在风险。");
 				response.sendRedirect(requrl + "/error.jsp");
 				return;
 			}
@@ -123,7 +123,7 @@ public class DynamicConsume4ATController {
 					response.sendRedirect(redirecturl);
 					return;
 				} else {
-					_log.info("请用正确的App扫码,用户扫描方式有误,request=[" + map + "]");
+					logger.info("请用正确的App扫码,用户扫描方式有误,request=[" + map + "]");
 					response.sendRedirect(requrl + "/error.jsp");
 					return;
 				}
@@ -139,18 +139,18 @@ public class DynamicConsume4ATController {
 					response.sendRedirect(redirecturl);
 					return;
 				} else {
-					_log.info("请用微信或者支付宝App扫码,用户扫描方式有误,request=[" + map + "]");
+					logger.info("请用微信或者支付宝App扫码,用户扫描方式有误,request=[" + map + "]");
 					response.sendRedirect(requrl + "/error.jsp");
 					return;
 				}
 
 			default:
-				_log.info("码类型转换失败，请检查[" + map + "]");
+				logger.info("码类型转换失败，请检查[" + map + "]");
 				break;
 			}
 
 		} catch (Exception e) {
-			_log.error(e);
+			logger.error(e);
 		}
 	}
 
@@ -200,7 +200,7 @@ public class DynamicConsume4ATController {
 	@RequestMapping(value = "/gateway/tencent", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
 	public ModelAndView tencentp(HttpServletRequest request, HttpServletResponse response) {
-		_log.info("###### 接受微信redirect消息: ######");
+		logger.info("###### 接受微信redirect消息: ######");
 		Map<String, Object> model = new HashMap<String, Object>();
 		Map<String, String> map = new HashMap<String, String>();
 		String jsModel = "jsApi";
@@ -224,7 +224,7 @@ public class DynamicConsume4ATController {
 			model = unifiedService.unified4Tencent(map.get(Constant.QR_BIZ));
 			map = null;
 		} catch (Exception e) {
-			_log.error(e);
+			logger.error(e);
 		}
 
 		return new ModelAndView(jsModel, model);
@@ -240,7 +240,7 @@ public class DynamicConsume4ATController {
 	@RequestMapping(value = "/gateway/query", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
 	public String orderquery(@RequestParam String params) {
-		_log.info("##开始接收AT聚合码业务统一查询请求 ,请求参数params=" + params);
+		logger.info("##开始接收AT聚合码业务统一查询请求 ,请求参数params=" + params);
 
 		String respMessage = "";
 		Map<String, String> map = new HashMap<String, String>();
@@ -266,7 +266,7 @@ public class DynamicConsume4ATController {
 			return respMessage;
 
 		} catch (Exception e) {
-			_log.error(e);
+			logger.error(e);
 			return Retutil.business(null);
 		}
 	}
@@ -293,7 +293,7 @@ public class DynamicConsume4ATController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		_log.info("##跳转到微信jsapi网页授权地址的路径为sendUrl：" + bf.toString() + "##" + ",平台单号=[" + serial_no + "]");
+		logger.info("##跳转到微信jsapi网页授权地址的路径为sendUrl：" + bf.toString() + "##" + ",平台单号=[" + serial_no + "]");
 
 		return bf.toString();
 	}
@@ -317,7 +317,7 @@ public class DynamicConsume4ATController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		_log.info("##跳转到微信jsapi网页授权地址的路径为sendUrl：" + bf.toString() + "##" + ",平台单号=[" + serial_no + "]");
+		logger.info("##跳转到微信jsapi网页授权地址的路径为sendUrl：" + bf.toString() + "##" + ",平台单号=[" + serial_no + "]");
 
 		return bf.toString();
 	}
