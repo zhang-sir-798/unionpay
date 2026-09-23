@@ -32,7 +32,7 @@ import java.util.Map;
 @Controller
 public class FixedConsume4ATController {
 
-	private static final Log _log = LogFactory.getLog(FixedConsume4ATController.class);
+	private static final Log logger = LogFactory.getLog(FixedConsume4ATController.class);
 	@Autowired
 	private FixedDetailService fixedDetailService;
 	@Autowired
@@ -54,7 +54,7 @@ public class FixedConsume4ATController {
 	@RequestMapping(value = "/gateway/batchGenerateQrcode" , method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
 	public String batchGenerateQrcode(@RequestParam String params) {
-		_log.info("##开始接收批量请求二维码 ,请求参数params=" + params);
+		logger.info("##开始接收批量请求二维码 ,请求参数params=" + params);
 		
 		String respMessage = "";
 		Map<String, String> map = new HashMap<String, String>();
@@ -76,7 +76,7 @@ public class FixedConsume4ATController {
 			return respMessage;
 
 		} catch (Exception e) {
-			_log.error(e);
+			logger.error(e);
 			return Retutil.business(null);
 		}
 
@@ -95,7 +95,7 @@ public class FixedConsume4ATController {
 	@RequestMapping(value = "/gateway/batchQrcodeQuery" , method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
 	public String qrcode(@RequestParam String params) {
-		_log.info("##开始接收AT聚合码业务统一下单请求 ,请求参数params=" + params);
+		logger.info("##开始接收AT聚合码业务统一下单请求 ,请求参数params=" + params);
 		
 		String respMessage = "";
 		Map<String, String> map = new HashMap<String, String>();
@@ -112,7 +112,7 @@ public class FixedConsume4ATController {
 			return respMessage;
 
 		} catch (Exception e) {
-			_log.error(e);
+			logger.error(e);
 			return Retutil.business(null);
 		}
 
@@ -129,7 +129,7 @@ public class FixedConsume4ATController {
 	@RequestMapping(value = "/gateway/bindQrCode" , method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
 	public String bindQrCode(@RequestParam String params) {
-		_log.info("##开始接收AT聚合码业务统一下单请求 ,请求参数params=" + params);
+		logger.info("##开始接收AT聚合码业务统一下单请求 ,请求参数params=" + params);
 		
 		String respMessage = "";
 		Map<String, String> map = new HashMap<String, String>();
@@ -153,7 +153,7 @@ public class FixedConsume4ATController {
 			return respMessage;
 
 		} catch (Exception e) {
-			_log.error(e);
+			logger.error(e);
 			return Retutil.business(null);
 		}
 
