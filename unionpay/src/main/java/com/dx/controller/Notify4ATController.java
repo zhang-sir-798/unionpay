@@ -40,7 +40,7 @@ import java.util.Map;
 @RestController
 public class Notify4ATController {
 
-	private static final Log log = LogFactory.getLog(Notify4ATController.class);
+	private static final Log logger = LogFactory.getLog(Notify4ATController.class);
 	@Autowired
 	private OrderDetailService orderService;
 	@Autowired
@@ -58,7 +58,7 @@ public class Notify4ATController {
 	public void wxPayNotify(HttpServletRequest request, HttpServletResponse response) {
 
 		String ip = getIpAddr(request);
-		log.info("##微信支付回调get访问IP:{" + ip + "}");
+		logger.info("##微信支付回调get访问IP:{" + ip + "}");
 		try {
 			response.setContentType("text/xml");
 			JSONObject messages = proWeChatOrder(request, response);
@@ -66,7 +66,7 @@ public class Notify4ATController {
 			out.write(messages.getString("respString").getBytes());
 			out.flush(); 
 			out.close();
-			log.info("##响应微信后台message:" + messages + ",响应上游后开启回调下游等业务。"); // TODO 通知下游等。。。
+			logger.info("##响应微信后台message:" + messages + ",响应上游后开启回调下游等业务。"); // TODO 通知下游等。。。
 			doWeChatNotifyMch(messages);
 
 		} catch (Exception e) {
@@ -85,16 +85,16 @@ public class Notify4ATController {
 	@RequestMapping(value = "/notify/consumefa", method = { RequestMethod.POST, RequestMethod.GET })
 	@ResponseBody
 	public void aliPayNotify(HttpServletRequest request, HttpServletResponse response) {
-		log.info("##阿里支付回调开始");
+		logger.info("##阿里支付回调开始");
 		String ip = getIpAddr(request);
-		log.info("##阿里支付回调get访问IP:{" + ip + "}");
+		logger.info("##阿里支付回调get访问IP:{" + ip + "}");
 		try {
 			JSONObject messages = proAliOrder(request, response);
 			BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
 			out.write(messages.getString("respString").getBytes());
 			out.flush();
 			out.close();
-			log.info("##响应阿里后台message:" + messages.getString("respString") + ",响应上游后开启回调下游等业务。");
+			logger.info("##响应阿里后台message:" + messages.getString("respString") + ",响应上游后开启回调下游等业务。");
 			//通知下游
 			doWeChatNotifyMch(messages);
 
@@ -108,7 +108,7 @@ public class Notify4ATController {
 		req.setCharacterEncoding("UTF-8");
 		String rstNotify = parserequst(req);
 		String resString = URLDecoder.decode(rstNotify, "UTF-8");
-		log.info("##收到阿里通知,开始处理异步通知请求。请求报文：" + resString);
+		logger.info("##收到阿里通知,开始处理异步通知请求。请求报文：" + resString);
 
 		String respString = Constant.AlipayConstant.RETURN_ALIPAY_VALUE_FAIL;
 		if (!StringUtils.isEmpty(resString)) {
@@ -148,7 +148,7 @@ public class Notify4ATController {
 		JSONObject bizparams = new JSONObject();
 		req.setCharacterEncoding("utf-8");
 		String resString = parseRequst(req);
-		log.info("##收到微信通知,开始处理异步通知请求。请求报文：" + resString);
+		logger.info("##收到微信通知,开始处理异步通知请求。请求报文：" + resString);
 		String respString = Constant.WxConstant.RESP_FAIL;
 		if (!StringUtils.isEmpty(resString)) {
 
