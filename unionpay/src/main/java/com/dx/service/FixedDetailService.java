@@ -217,7 +217,7 @@ public class FixedDetailService {
 		Map<String, String> respMap = null;
 		bizMap.put("batchNo", batchNo);
 		try {
-			respMap = demo.doBbatchQrcodeQuery(bizMap);
+
 		} catch (Exception e) {
 			errorMessage = "请稍后再试。";
 			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
