@@ -42,7 +42,7 @@ import com.dx.util.tools.signUtil;
 @Transactional
 public class FixedDetailService {
 
-	private static final Log _log = LogFactory.getLog(FixedDetailService.class);
+	private static final Log logger = LogFactory.getLog(FixedDetailService.class);
 
 	@Autowired
 	private FixedQrRepositoryDao fixedQrRepositoryDao;
@@ -83,7 +83,7 @@ public class FixedDetailService {
 
 		bizResult = Retutil.createSuccessBizWithSign(respJson, jsonParam.getString("agentKey"));
 
-		_log.info("VVVV YLBatchNo[" + jsonParam.getString("ylBatchNo") + "], ATCodeUnionPay return value ==" + bizResult);
+		logger.info("VVVV YLBatchNo[" + jsonParam.getString("ylBatchNo") + "], ATCodeUnionPay return value ==" + bizResult);
 
 		respJson = null;
 
@@ -134,7 +134,7 @@ public class FixedDetailService {
 
 		bizResult = Retutil.createSuccessBizWithSign(respJson, jsonParam.getString("agentKey"));
 
-		_log.info("VVVV iBatchNo[" + iBatchNo + "], ATCodeUnionPay return value ==" + bizResult);
+		logger.info("VVVV iBatchNo[" + iBatchNo + "], ATCodeUnionPay return value ==" + bizResult);
 
 		respJson = null;
 
@@ -161,32 +161,32 @@ public class FixedDetailService {
 		// 验证请求参数有效性（必选项）
 		if (StringUtils.isBlank(requestId)) {
 			errorMessage = "request params[requestId] error.";
-			_log.info("VVVV orderNo=[" + requestId + "],errorMessage=[" + errorMessage + "]");
+			logger.info("VVVV orderNo=[" + requestId + "],errorMessage=[" + errorMessage + "]");
 			return Retutil.createFailBiz(RetEnum.RET_V_INVALID, errorMessage);
 		}
 
-		_log.info("VVVV requestId=[" + requestId + "] , validateService beging .......");
+		logger.info("VVVV requestId=[" + requestId + "] , validateService beging .......");
 
 		if (StringUtils.isBlank(orgId)) {
 			errorMessage = "request params[orgId] error.";
-			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
+			logger.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
 			return Retutil.createFailBiz(RetEnum.RET_V_INVALID, errorMessage);
 		}
 
 		if (StringUtils.isBlank(version)) {
 			errorMessage = "request params[version] error.";
-			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
+			logger.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
 			return Retutil.createFailBiz(RetEnum.RET_V_INVALID, errorMessage);
 		}
 
 		if (StringUtils.isEmpty(sign)) {
 			errorMessage = "request params[sign] is null.";
-			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
+			logger.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
 			return Retutil.createFailBiz(RetEnum.RET_V_INVALID, errorMessage);
 		}
 		if (StringUtils.isEmpty(batchNo)) {
 			errorMessage = "request params[batchNo] is null.";
-			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
+			logger.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
 			return Retutil.createFailBiz(RetEnum.RET_V_INVALID, errorMessage);
 		}
 		
@@ -194,20 +194,20 @@ public class FixedDetailService {
 		FixedBatchNo FixedBatchNo = fixedBatchNoDao.selectByBacthNo(batchNo);
 		if (FixedBatchNo == null) {
 			errorMessage = "request params[batchNo] is error.";
-			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
+			logger.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
 			return Retutil.createFailBiz(RetEnum.RET_V_INVALID, errorMessage);
 		}
 
 		String agentKey = FixedBatchNo.getAgent_key(); // 是否生成共享秘钥，交易一个商户一个秘钥
 		if (StringUtils.isBlank(agentKey)) {
 			errorMessage = "商户创建异常[orgId=" + orgId + "] record in db.";
-			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + ",未找到请求秘钥reqkey]");
+			logger.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + ",未找到请求秘钥reqkey]");
 			return Retutil.createFailBiz(RetEnum.RET_V_INVALID, errorMessage);
 		}
 
 		if (!signUtil.verify(params, agentKey)) {
 			errorMessage = "签名验证失败";
-			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
+			logger.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
 			return Retutil.createFailBiz(RetEnum.RET_V_SIGN_FAIL, errorMessage);
 		}
 
@@ -220,7 +220,7 @@ public class FixedDetailService {
 
 		} catch (Exception e) {
 			errorMessage = "请稍后再试。";
-			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
+			logger.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
 			return Retutil.createFailBiz(RetEnum.RET_V_REPEAT_YL, errorMessage);
 		}
 		String qrStr = respMap.get("qrCodeInfo");
@@ -261,7 +261,7 @@ public class FixedDetailService {
 
 		bizResult = Retutil.createSuccessBizWithSign(respJson, agentKey);
 
-		_log.info("VVVV requestId[" + requestId + "], ATCodeUnionPay return value ==" + bizResult);
+		logger.info("VVVV requestId[" + requestId + "], ATCodeUnionPay return value ==" + bizResult);
 
 		respJson = null;
 
@@ -289,52 +289,52 @@ public class FixedDetailService {
 		// 验证请求参数有效性（必选项）
 		if (StringUtils.isBlank(requestId)) {
 			errorMessage = "request params[requestId] error.";
-			_log.info("VVVV orderNo=[" + requestId + "],errorMessage=[" + errorMessage + "]");
+			logger.info("VVVV orderNo=[" + requestId + "],errorMessage=[" + errorMessage + "]");
 			return Retutil.createFailBiz(RetEnum.RET_V_INVALID, errorMessage);
 		}
 
-		_log.info("VVVV requestId=[" + requestId + "] , validateService beging .......");
+		logger.info("VVVV requestId=[" + requestId + "] , validateService beging .......");
 
 		if (StringUtils.isBlank(orgId)) {
 			errorMessage = "request params[orgId] error.";
-			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
+			logger.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
 			return Retutil.createFailBiz(RetEnum.RET_V_INVALID, errorMessage);
 		}
 
 		if (StringUtils.isBlank(version)) {
 			errorMessage = "request params[version] error.";
-			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
+			logger.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
 			return Retutil.createFailBiz(RetEnum.RET_V_INVALID, errorMessage);
 		}
 
 		if (StringUtils.isEmpty(sign)) {
 			errorMessage = "request params[sign] is null.";
-			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
+			logger.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
 			return Retutil.createFailBiz(RetEnum.RET_V_INVALID, errorMessage);
 		}
 		if (StringUtils.isEmpty(batchNo)) {
 			errorMessage = "request params[batchNo] is null.";
-			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
+			logger.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
 			return Retutil.createFailBiz(RetEnum.RET_V_INVALID, errorMessage);
 		}
 
 		List<FixedQrRepository> fixedQrList = fixedQrRepositoryDao.selectAll();
 		if (fixedQrList.isEmpty()) {
 			errorMessage = "request params[batchNo] is error.";
-			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
+			logger.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
 			return Retutil.createFailBiz(RetEnum.RET_V_INVALID, errorMessage);
 		}
 
 		String agentKey = fixedQrList.get(0).getAgent_key(); // 是否生成共享秘钥，交易一个商户一个秘钥
 		if (StringUtils.isBlank(agentKey)) {
 			errorMessage = "商户创建异常[orgId=" + orgId + "] record in db.";
-			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + ",未找到请求秘钥reqkey]");
+			logger.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + ",未找到请求秘钥reqkey]");
 			return Retutil.createFailBiz(RetEnum.RET_V_INVALID, errorMessage);
 		}
 
 		if (!signUtil.verify(params, agentKey)) {
 			errorMessage = "签名验证失败";
-			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
+			logger.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
 			return Retutil.createFailBiz(RetEnum.RET_V_SIGN_FAIL, errorMessage);
 		}
 
@@ -396,7 +396,7 @@ public class FixedDetailService {
 
 		bizResult = Retutil.createSuccessBizWithSign(respJson, agentKey);
 
-		_log.info("VVVV requestId[" + requestId + "], ATCodeUnionPay return value ==" + bizResult);
+		logger.info("VVVV requestId[" + requestId + "], ATCodeUnionPay return value ==" + bizResult);
 
 		respJson = null;
 
