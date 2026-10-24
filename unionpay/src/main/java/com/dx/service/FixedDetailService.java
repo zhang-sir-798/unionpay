@@ -211,7 +211,6 @@ public class FixedDetailService {
 			return Retutil.createFailBiz(RetEnum.RET_V_SIGN_FAIL, errorMessage);
 		}
 
-		// TODO 去查询银联二维码，存到yl 白码库中
 		/**** 银联消费收款码产品--固码 ***/
 		Map<String, String> bizMap = new HashMap<String, String>();
 		Map<String, String> respMap = null;
@@ -338,42 +337,6 @@ public class FixedDetailService {
 			return Retutil.createFailBiz(RetEnum.RET_V_SIGN_FAIL, errorMessage);
 		}
 
-		// TODO 去查询银联二维码，存到yl 白码库中
-		/**** 银联消费收款码产品--固码 ***/
-		/*Map<String, String> bizMap = new HashMap<String, String>();
-		Map<String, String> respMap = null;
-		bizMap.put("batchNo", fixedQrList.get(0).getYl_batch_no());
-		try {
-			respMap = demo.doBbatchQrcodeQuery(bizMap);
-		} catch (Exception e) {
-			errorMessage = "请稍后再试。";
-			_log.info("VVVV requestId=[" + requestId + "],errorMessage=[" + errorMessage + "]");
-			return Retutil.createFailBiz(RetEnum.RET_V_REPEAT_YL, errorMessage);
-		}
-		String qrStr = respMap.get("qrCodeInfo");
-		qrStr = qrStr.substring(1, qrStr.length() - 1);
-		qrStr = qrStr.replace("},{", "},,{");
-		String[] qrStrs = qrStr.split(",,");
-		List<YlQrRepository> ylqrRepositoryList = new ArrayList<YlQrRepository>();
-		for (String qrJson : qrStrs) {
-			net.sf.json.JSONObject json = net.sf.json.JSONObject.fromObject(qrJson);
-			YlQrRepository ylQrRepository = new YlQrRepository();
-			ylQrRepository.setBatchNo(batchNo);
-			ylQrRepository.setYlBatchNo(bizMap.get("batchNo"));
-			ylQrRepository.setAgentNo(fixedQrList.get(0).getAgent_no());
-			ylQrRepository.setCreateTime(new Date());
-			ylQrRepository.setQrCode(json.getString("qrCode"));
-			ylQrRepository.setQrNum(json.getString("qrNum"));
-			ylQrRepository.setQrStatus(json.getString("qrStatus"));
-			// ylQrRepository.setExpandCode("上海银行的机构号");
-			ylQrRepository.setQrStatus("unuse");
-			ylqrRepositoryList.add(ylQrRepository);
-		}
-
-		ylqrRepositoryDao.insertYlQrCodelist(ylqrRepositoryList);*/
-		/****/
-
-		// 查询出自己的码
 		ArrayList<Object> qrList = new ArrayList<>();
 		Map<String, String> qrMap = new HashMap<String, String>();
 		for (FixedQrRepository pojo : fixedQrList) {
@@ -405,7 +368,6 @@ public class FixedDetailService {
 	}
 
 	public static String sign_qrcode(String serialNo) throws UnsupportedEncodingException {
-		// String url = "https://127.0.0.1:8443/unionpay/gateway/unifiedorder?qr=";
 		String url = "http://127.0.0.1/unionpay/gateway/qrfixed?qr=";
 		String signKey = "111";
 		String sign = signUtil.MAC(serialNo, signKey);
